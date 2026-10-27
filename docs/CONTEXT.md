@@ -8,7 +8,7 @@ This repository runs on its own. No shared source folder, software header, data 
 
 ## PRD status
 
-Diego asked that no PRD be uploaded during setup. He is comparing drafts, including Claude's, to create a merged PRD for each product. Draft PRDs and old combined requirements have not been hidden in a replacement file here. Read the merged PRD when supplied and get its scope accepted before feature work.
+The website PRD was added on October 27, 2026 as docs/PRD.md, a draft for Diego and Kean review. Get its scope accepted before feature work.
 
 ## Business and source limits
 

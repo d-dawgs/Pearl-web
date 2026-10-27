@@ -6,7 +6,7 @@ Pearl Island's standalone public website. Repository owner and website lead: Die
 
 An independent Next.js App Router, TypeScript and plain-CSS skeleton. `/` is intentionally a blank, white canvas. No website design, business integrations or catering software is implemented.
 
-**PRD pending:** Diego is comparing separate drafts, including one prepared with Claude, and will add the merged website PRD later. No PRD or PRD placeholder file is included. Do not treat the build/design notes as an approved feature specification.
+**PRD:** [docs/PRD.md](docs/PRD.md) is the website's requirements document. It is a draft for Diego and Kean review; do not treat it as approved scope until they accept it.
 
 ## Local development
 

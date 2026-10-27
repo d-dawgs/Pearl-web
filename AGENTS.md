@@ -5,7 +5,7 @@ Help Diego build the public website only. This repository is independent of the 
 ## Start here
 
 - Read README.md, docs/CONTEXT.md, docs/BUILD_PLAN.md and docs/DESIGN.md.
-- The PRD is intentionally absent while Diego compares drafts. Once he adds a merged PRD, read it and its approval state before feature work. Do not generate, import or publish a PRD without his instruction.
+- Read docs/PRD.md and its status before feature work. It is a draft until Diego and Kean accept it. Do not rewrite or replace it without their instruction.
 - Clarify substantial product/design choices, prepare a complete file-bounded brief and obtain approval before implementation. Follow Diego's design-first, page-by-page workflow.
 - Check current local changes. Preserve work that is outside the task.
 
