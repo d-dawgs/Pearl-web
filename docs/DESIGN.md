@@ -1,6 +1,6 @@
 # Website design direction
 
-Current direction retained from Diego's design studies; full desktop/mobile composition still needs consolidation and approval before feature coding. The skeleton intentionally applies no finished website design.
+WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 2026. The approved homepage brief supplies the consolidated desktop/phone choices for this first module. The remaining public pages still need their own design and approval. See [the implementation result](website/WEB-010-HOME-v1-RESULT.md).
 
 ## Structure and identity
 
@@ -19,4 +19,4 @@ Selected motion: normal cursor, center pivot, maximum 4.5 degrees per axis, lift
 
 ## Inputs and review discipline
 
-Production video/card photos, original name lettering, exact mobile layout and final copy remain open. Do not import another business's assets or the rejected implementation. Chat carousel controls, overlay arrows and annotation UI are not part of the page. Compare the completed page to one approved reference at matching desktop/mobile widths; don't declare visual completion from build success alone.
+Production video/card photos, original name lettering, verified business details and destination URLs remain open. The WEB-010 brief approves a temporary Georgia wordmark, exact temporary Welcome copy, phone layout and inactive controls for review. Do not import another business's assets or the rejected implementation. Chat carousel controls, overlay arrows and annotation UI are not part of the page. Diego's visual acceptance is still required; build success alone does not complete review.

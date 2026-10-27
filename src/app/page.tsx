@@ -1,3 +1,5 @@
-export default function HomePage() {
-  return <main className="blank-canvas" aria-label="Pearl Island website canvas" />;
+import { HomePage } from "../features/website/home-page";
+
+export default function Page() {
+  return <HomePage />;
 }

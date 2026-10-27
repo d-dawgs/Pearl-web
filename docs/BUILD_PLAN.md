@@ -1,12 +1,13 @@
 # Website build plan
 
-Status: independent blank skeleton; Ready for Diego review after initialization checks. PRD merge is pending. No page design has been implemented.
+Status: WEB-010-HOME v1 implementation is Ready for Diego review. The standalone foundation remains the last accepted work. The website PRD is present as a draft; this approved homepage module does not approve the rest of that PRD.
 
 ## Current and next
 
-- Current: review the standalone foundation and compare the PRD drafts.
-- Next: add the merged, reviewed website PRD; agree the sitemap and first-demo page set.
-- Last retained work: current visual decisions are summarized in DESIGN.md. The old rejected homepage implementation was not imported.
+- Last accepted: independent blank foundation, technically checked October 26.
+- Current: review the complete homepage module against the approved reference and [result evidence](website/WEB-010-HOME-v1-RESULT.md). Diego has not accepted it yet.
+- Next: Diego reviews WEB-010; then approve and build remaining public pages one by one, beginning with their content and designs. Wiring and production activation remain later steps.
+- Blockers/inputs: production lettering, hero/card media, verified business details, destination URLs and newsletter provider. The old rejected homepage implementation was not imported.
 
 ## Design-first path
 
@@ -17,7 +18,7 @@ Status: independent blank skeleton; Ready for Diego review after initialization 
 | 3 | Content and media | Copy/business facts/assets have sources and approval states; missing inputs are explicit. |
 | 4 | Whole-site visual foundation | Typography, palette roles, spacing, header/footer and responsive patterns are reviewed. Exact logo lettering remains an input. |
 | 5 | Consolidated homepage design | One desktop/mobile reference includes the full page, latest portrait cards, media treatment and inactive/active states. |
-| 6 | Homepage task brief and build | Diego approves exact files/content/behavior/checks; code matches the visual reference at equal viewport widths. |
+| 6 | Homepage task brief and build | WEB-010-HOME v1 brief approved; implementation Ready for Diego review, pending his visual acceptance. |
 | 7 | Remaining public pages | Build each approved page separately, including the Catering marketing page. Review before moving on. |
 | 8 | Wire approved destinations | Internal navigation, external catering customer URL, Square/gift-card/hiring/social links are verified. Newsletter is a separately approved integration. |
 | 9 | Cross-device/content/access review | Relevant technical checks, phone/desktop screenshots, keyboard flow and accurate content pass; limitations are recorded. |

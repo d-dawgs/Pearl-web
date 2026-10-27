@@ -1,0 +1,64 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: clamp(320px, 28vw, 520px);
+  background: var(--body);
+  color: var(--white);
+  font-size: 14px;
+}
+.welcome { padding: 42px 24px 30px; text-align: center; }
+.welcome h1, .newsletter h2 { margin: 0; font: 500 30px/1.25 Georgia, serif; }
+.welcome h1 { color: var(--blue); }
+.welcome p { max-width: 670px; margin: 12px auto 18px; font: 400 15px/1.65 Arial, Helvetica, sans-serif; }
+.orderButton {
+  min-height: 44px;
+  padding: 10px 19px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font: 400 17px/1.25 Georgia, serif;
+}
+.newsletter {
+  padding: 38px 24px 42px;
+  background: var(--cyan);
+  color: var(--ink);
+  text-align: center;
+}
+.newsletter p:not(:global(.sr-only)) { margin: 7px 0 17px; }
+.signup { display: flex; justify-content: center; gap: 10px; max-width: 440px; margin: 0 auto; }
+.signup input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--body);
+  -webkit-text-fill-color: var(--body);
+  opacity: 1;
+}
+.signup input::placeholder { color: var(--body); opacity: 1; }
+.signup button {
+  min-height: 44px;
+  padding: 10px 19px;
+  border: 2px solid var(--ink);
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--white);
+  opacity: 1;
+  white-space: nowrap;
+}
+@media (max-width: 1099px) {
+  .hero { height: min(110vw, 500px); }
+}
+@media (max-width: 599px) {
+  .welcome { padding: 35px 20px 28px; }
+  .welcome h1, .newsletter h2 { font-size: 27px; }
+  .newsletter { padding: 34px 20px 38px; }
+  .signup { flex-direction: column; }
+}
