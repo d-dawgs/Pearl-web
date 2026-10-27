@@ -1,6 +1,6 @@
 # Website session state — October 27, 2026
 
-**Status: WEB-011-FOOTER v1 — Ready for Diego review. WEB-010-HOME v1 remains Ready for Diego review.** Diego approved the footer task on October 27; checks and browser review passed, but he has not accepted the work.
+**Status: WEB-012-HEADER-SCROLL v1 — Ready for Diego review. WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.** The approved header behavior and footer type refinement are implemented; lint, typecheck, build, and browser interaction checks passed. No hydration warnings appeared. The browser logged one existing `/favicon.ico` 404, left outside this task's file scope.
 
 ## Last accepted
 
@@ -8,9 +8,9 @@ Independent blank website foundation, technically checked October 26. The draft 
 
 ## Current
 
-WEB-011-FOOTER v1 adds the measured dark footer layout and Google-listing contact details. The listing facts remain unverified and no destinations are active.
+WEB-012-HEADER-SCROLL v1 adds the top fade and scroll-direction header behavior. The footer's page labels now use the established Georgia display face with restrained tracking; contact details remain in Arial. WEB-011-FOOTER v1 adds the measured dark footer layout and Google-listing contact details. The listing facts remain unverified and no destinations are active.
 
-The complete designed homepage module is implemented on `diego/homepage-design` at base revision `89d6fd3fdbdd9f031e1e431847b3d45acfc213a4`, with uncommitted work. It includes the full-width desktop header, moving underline, accepted phone menu, video placeholder, Welcome, three selected portrait cards and motion, inactive newsletter presentation and dark footer. No destination or external service is active.
+The complete designed homepage module is implemented on `diego/homepage-design`; it includes the full-width desktop header, moving underline, accepted phone menu, beach photo, Welcome, three selected portrait cards and motion, inactive newsletter presentation and dark footer. No destination or external service is active.
 
 The approved visual reference precedence remains: WEB-010 brief; accepted phone menu for phone navigation; focused card study for card material/motion; Clean white study for the remaining composition. The temporary Georgia wordmark, copy and placeholders are only for this module's review.
 

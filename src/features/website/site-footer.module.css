@@ -32,8 +32,11 @@
 
 .pages button {
   min-height: 30.88px;
-  font: 600 26.368px/1.171875 Arial, Helvetica, sans-serif;
+  font: 700 26.368px/1.171875 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.015em;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
   overflow-wrap: anywhere;
 }
 

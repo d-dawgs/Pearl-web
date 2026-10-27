@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { desktopPages, inactiveDescriptionId, mobilePages } from "./site-content";
 import { SocialIcons } from "./social-icons";
 import styles from "./site-header.module.css";
@@ -9,11 +9,30 @@ export function SiteHeader() {
   const [hovered, setHovered] = useState<number | null>(null);
   const [focused, setFocused] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [scrollMode, setScrollMode] = useState<"flow" | "focus-flow" | "pinned" | "hidden">("flow");
+  const [scrollProgress, setScrollProgress] = useState(0);
   const navRef = useRef<HTMLElement>(null);
   const navButtons = useRef<(HTMLButtonElement | null)[]>([]);
   const indicatorRef = useRef<HTMLSpanElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollModeRef = useRef<"flow" | "focus-flow" | "pinned" | "hidden">("flow");
+  const focusWithinRef = useRef(false);
+  const openRef = useRef(false);
+  const modeBeforeFocusRef = useRef<"flow" | "focus-flow" | "pinned" | "hidden">("flow");
+  const lastYRef = useRef(0);
+  const upwardDistanceRef = useRef(0);
+
+  const changeScrollMode = useCallback((next: "flow" | "focus-flow" | "pinned" | "hidden") => {
+    scrollModeRef.current = next;
+    setScrollMode((current) => current === next ? current : next);
+  }, []);
+
+  const setMenuOpen = useCallback((next: boolean) => {
+    openRef.current = next;
+    setOpen(next);
+    if (next) changeScrollMode(window.scrollY >= 140 ? "pinned" : "focus-flow");
+  }, [changeScrollMode]);
 
   const placeIndicator = useCallback(() => {
     const nav = navRef.current;
@@ -23,8 +42,7 @@ export function SiteHeader() {
     const navBox = nav.getBoundingClientRect();
     const textBox = button.querySelector("span")?.getBoundingClientRect();
     if (!textBox) return;
-    indicator.style.width = `${textBox.width}px`;
-    indicator.style.transform = `translateX(${textBox.left - navBox.left}px)`;
+    indicator.style.transform = `translateX(${textBox.left - navBox.left}px) scaleX(${textBox.width})`;
     indicator.dataset.ready = "true";
   }, [focused, hovered]);
 
@@ -37,11 +55,66 @@ export function SiteHeader() {
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 1100px)");
     const onChange = () => {
-      if (desktop.matches) setOpen(false);
+      if (desktop.matches) setMenuOpen(false);
     };
     desktop.addEventListener("change", onChange);
     return () => desktop.removeEventListener("change", onChange);
-  }, []);
+  }, [setMenuOpen]);
+
+  useEffect(() => {
+    let frame = 0;
+    let resizePending = false;
+
+    const applyPosition = (trackDirection: boolean) => {
+      const y = window.scrollY;
+      setScrollProgress(Math.min(y / 140, 1));
+
+      if (y < 140) {
+        upwardDistanceRef.current = 0;
+        changeScrollMode(focusWithinRef.current || openRef.current ? "focus-flow" : "flow");
+      } else if (focusWithinRef.current || openRef.current) {
+        upwardDistanceRef.current = 0;
+        changeScrollMode("pinned");
+      } else if (trackDirection) {
+        const delta = y - lastYRef.current;
+        if (delta > 0) {
+          upwardDistanceRef.current = 0;
+          changeScrollMode("hidden");
+        } else if (delta < 0) {
+          upwardDistanceRef.current += -delta;
+          if (upwardDistanceRef.current >= 8) changeScrollMode("pinned");
+        } else if (scrollModeRef.current === "flow" || scrollModeRef.current === "focus-flow") changeScrollMode("hidden");
+      } else if (scrollModeRef.current !== "pinned") {
+        changeScrollMode("hidden");
+      }
+
+      lastYRef.current = y;
+    };
+
+    const schedule = (trackDirection: boolean) => {
+      if (!trackDirection) resizePending = true;
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const resized = resizePending;
+        resizePending = false;
+        applyPosition(trackDirection && !resized);
+      });
+    };
+
+    lastYRef.current = window.scrollY;
+    applyPosition(false);
+    if (window.scrollY >= 140 && !focusWithinRef.current) changeScrollMode("hidden");
+    const onScroll = () => schedule(true);
+    const onResize = () => schedule(false);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [changeScrollMode]);
 
   useEffect(() => {
     if (!open) return;
@@ -57,7 +130,7 @@ export function SiteHeader() {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        setOpen(false);
+        setMenuOpen(false);
         toggleRef.current?.focus();
       }
       if (event.key !== "Tab") return;
@@ -80,15 +153,31 @@ export function SiteHeader() {
       document.body.style.overflow = oldOverflow;
       background.forEach((element, index) => { element.inert = previous[index]; });
     };
-  }, [open]);
+  }, [open, setMenuOpen]);
 
   const closeMenu = () => {
-    setOpen(false);
+    setMenuOpen(false);
     toggleRef.current?.focus();
   };
 
   return (
-    <header className={`${styles.header} ${open ? styles.open : ""}`}>
+    <div className={`${styles.headerSlot} ${open ? styles.menuOpen : ""}`}>
+      <header
+        className={`${styles.header} ${scrollMode === "focus-flow" ? styles.focusRevealed : ""} ${scrollMode === "pinned" ? styles.pinned : ""} ${scrollMode === "hidden" ? styles.hidden : ""} ${open ? styles.open : ""}`}
+        style={{ "--scroll-offset": `${scrollProgress * -14}px`, "--scroll-opacity": 1 - scrollProgress } as CSSProperties}
+        onFocusCapture={() => {
+          if (!focusWithinRef.current) modeBeforeFocusRef.current = scrollModeRef.current;
+          focusWithinRef.current = true;
+          changeScrollMode(window.scrollY >= 140 ? "pinned" : "focus-flow");
+        }}
+        onBlurCapture={(event) => {
+          if (event.currentTarget.contains(event.relatedTarget as Node | null)) return;
+          focusWithinRef.current = false;
+          if (openRef.current) return;
+          if (window.scrollY < 140) changeScrollMode("flow");
+          else changeScrollMode(modeBeforeFocusRef.current === "hidden" ? "hidden" : "pinned");
+        }}
+      >
       <nav
         ref={navRef}
         className={styles.desktopNav}
@@ -130,11 +219,12 @@ export function SiteHeader() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         aria-controls="mobile-website-menu"
-        onClick={() => open ? closeMenu() : setOpen(true)}
+        onClick={() => open ? closeMenu() : setMenuOpen(true)}
       >
         <span /><span />
       </button>
 
+      </header>
       <div
         ref={overlayRef}
         id="mobile-website-menu"
@@ -161,6 +251,6 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

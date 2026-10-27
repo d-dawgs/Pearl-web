@@ -1,3 +1,9 @@
+.headerSlot {
+  position: relative;
+  z-index: 30;
+  min-height: 90px;
+}
+
 .header {
   position: relative;
   z-index: 30;
@@ -10,6 +16,44 @@
   background: var(--white);
   color: var(--body);
 }
+
+.header:not(.pinned):not(.hidden):not(.focusRevealed) {
+  opacity: var(--scroll-opacity, 1);
+  transform: translateY(var(--scroll-offset, 0px));
+  transition: none;
+}
+
+.header.pinned,
+.header.hidden {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 320ms cubic-bezier(.22,.61,.36,1), opacity 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
+}
+
+.header.pinned {
+  background: var(--white);
+  box-shadow: 0 6px 18px rgb(28 28 28 / .12), 0 1px 0 rgb(28 28 28 / .06);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header.hidden {
+  box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+.header.focusRevealed,
+.header.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.header.focusRevealed { transition: none; }
 
 .desktopNav { position: relative; display: flex; align-items: center; gap: 14px; width: max-content; }
 .navButton {
@@ -27,10 +71,11 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  width: 1px;
   height: 2px;
   background: var(--blue);
   pointer-events: none;
+  transform-origin: left center;
   transition: transform 260ms cubic-bezier(.22,.61,.36,1), width 260ms cubic-bezier(.22,.61,.36,1);
 }
 .indicator:not([data-ready]) { transition: none; }
@@ -68,6 +113,7 @@
 .toggle, .overlay { display: none; }
 
 @media (max-width: 1099px) {
+  .headerSlot { min-height: calc(88px + env(safe-area-inset-top)); }
   .header { display: flex; justify-content: space-between; gap: 12px; height: calc(88px + env(safe-area-inset-top)); min-height: calc(88px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) 22px 0; }
   .desktopNav, .desktopActions { display: none; }
   .wordmark { font-size: 22px; line-height: 1.1; text-align: left; }
@@ -97,7 +143,7 @@
   .open .toggle span:last-child { transform: rotate(-45deg); }
   .overlay {
     position: fixed;
-    z-index: -1;
+    z-index: 29;
     inset: calc(88px + env(safe-area-inset-top)) 0 0;
     display: block;
     overflow-y: auto;
@@ -109,7 +155,7 @@
     pointer-events: none;
     transition: opacity 350ms cubic-bezier(.22,.61,.36,1), visibility 0s linear 350ms;
   }
-  .open .overlay {
+  .menuOpen .overlay {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -139,5 +185,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .header:not(.pinned):not(.hidden):not(.focusRevealed) { opacity: 1; transform: none; }
+  .header.pinned, .header.hidden { transition: none; }
   .indicator, .navButton, .toggle span, .overlay { transition: none !important; }
 }
