@@ -1,33 +1,165 @@
 .footer {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  padding: 40px 32px 44px;
+  grid-template-columns: repeat(3, minmax(0, 23vw));
+  grid-template-rows: auto auto auto;
+  justify-content: space-between;
+  column-gap: 0;
+  row-gap: 11px;
+  padding: 47.52px 3vw;
   background: var(--ink);
   color: var(--white);
-  font-size: 13px;
 }
+
 .footer button {
-  width: fit-content;
+  max-width: 100%;
   padding: 0;
   border: 0;
   background: none;
   color: inherit;
   text-align: left;
 }
-.pages { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; }
-.pages button { min-height: 24px; }
-.column h2 { margin: 0 0 17px; font: 500 18px/1.3 Georgia, serif; }
-.placeholder { width: 120px; max-width: 100%; height: 3px; margin: 11px 0; background: var(--white); }
-.short { width: 83px; }
-.footer .extra { display: block; margin-top: 16px; font-size: 12px; }
-.socials { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
-.footer .socialButton { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; }
-.extras { display: flex; align-items: center; gap: 5px; margin-top: 16px; font-size: 12px; }
-@media (max-width: 599px) {
-  .footer { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; padding: 30px 20px 34px; }
-  .pages { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 9px 15px; }
+
+.pages {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 40px;
 }
-@media (max-width: 359px) {
-  .footer { grid-template-columns: 1fr; }
+
+.pages button {
+  min-height: 30.88px;
+  font: 600 26.368px/1.171875 Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
+}
+
+.orderButton {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  display: flex;
+  width: min(100%, 330.2px);
+  height: 109.3px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 84px;
+  padding: 0 26.72px;
+  border: 2px solid var(--white) !important;
+  border-radius: 6.4px;
+  background: transparent !important;
+  color: var(--white) !important;
+  font: 400 16px/normal Georgia, serif;
+  text-align: center !important;
+  white-space: nowrap;
+}
+
+.column {
+  min-width: 0;
+}
+
+.location {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.contact {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.column h2 {
+  margin: 0 0 32px;
+  font: 500 26.368px/1.171875 Georgia, serif;
+}
+
+.location address {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font: 400 19.456px/1.4 Arial, Helvetica, sans-serif;
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+
+.locationName {
+  text-transform: uppercase;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font: 400 16px/1.4 Arial, Helvetica, sans-serif;
+}
+
+.contactDetails p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.socials {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  width: max-content;
+  height: 69.2px;
+  align-items: center;
+  gap: 0;
+  margin-top: 124px;
+}
+
+.footer .socialButton {
+  display: inline-flex;
+  width: 32px;
+  height: 44px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+.socialButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.extras {
+  grid-column: 3;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 16px;
+  font: 400 16px/1.4 Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 899px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 27.852px 6vw;
+  }
+
+  .pages { margin-top: 0; padding-bottom: 70px; }
+  .pages button { min-height: 25.86px; font-size: 22.0768px; line-height: 1.171875; }
+  .socials { height: 59px; margin-top: 0; }
+  .orderButton {
+    width: max-content;
+    min-width: 121.8px;
+    height: 59px;
+    margin-top: 0;
+    padding-inline: 24px;
+  }
+  .column h2 { margin-bottom: 32px; font-size: 22.0768px; line-height: 1.171875; }
+  .location { margin-top: 35px; }
+  .location address { font-size: 18.0256px; line-height: 1.4; }
+  .extras { margin-top: 5px; }
 }

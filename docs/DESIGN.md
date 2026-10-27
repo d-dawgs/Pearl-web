@@ -7,6 +7,9 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - Public header: website links left, Pearl Island name centered, Instagram/Facebook icons plus outlined Order Now right. No TikTok. One underline moves from the current page to hover/keyboard focus and returns at rest.
 - Header name should match the supplied logo's bold uppercase textured lettering. Oleo script was superseded. Exact original font/vector lettering is not identified; never present a substitute as an exact match.
 - Broad hero video area, concise two/three-sentence Welcome and Order Now, three destination cards, newsletter block and dark footer. Keep the page compact.
+- Footer arrangement: left page links and outlined Order Now, center Location, right Contact; on phones the measured sequence is page links, socials, Order Now, Location, Contact. Footer actions remain inactive.
+- Desktop footer measurements: 3vw side margins, 47.52px vertical padding, and three columns about 330px wide. Page links and headings use 26.37px/30.88px; location text 19.46px/27.24px; contact lines 16px/22.4px; Order Now is 330.2×109.3px.
+- Phone footer measurements at 390px: 6vw side margins and 27.85px vertical padding. Page links and headings use 22.08px/25.86px; location text 18.03px/25.24px; Order Now is 121.8×59px; social glyphs are 20px with 12px visual spacing.
 - Website owns its entire page shell. Do not reproduce the old software navigation, dark surrounding frame or boxed body workaround.
 
 ## Selected inputs
