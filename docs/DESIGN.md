@@ -13,9 +13,20 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - Desktop footer measurements: 3vw side margins, 47.52px vertical padding, and three columns about 330px wide. Page links and headings use 26.37px/30.88px; location text 19.46px/27.24px; contact lines 16px/22.4px; Order Now is 330.2×109.3px.
 - Phone footer measurements at 390px: 6vw side margins and 27.85px vertical padding. Page links and headings use 22.08px/25.86px; location text 18.03px/25.24px; Order Now is 121.8×59px; social glyphs are 20px with 12px visual spacing.
 - Footer page labels use bold Georgia with restrained negative tracking and a fine, offset static underline; contact and address details remain Arial.
+- WEB-011-FOOTER v2 replaces footer typography only: self-hosted Lora 600 for links/headings at 26.368px/30.882px desktop and 22.077px/25.856px phone, plus Literata 400/500 for details and Order Now. Next.js fetches both from Google Fonts at build time and serves the font files locally.
+- WEB-013-PHOTOS v1 uses a grayscale, contrast-adjusted Welcome photo in the existing placeholder box. Card photos fill the existing 3:4 panels under the fixed gloss and lower contrast layer; title, material and motion remain intact.
+- WEB-015 v1 removes Pearl Island 2 Go from the phone and footer lists; community remains. Outlined actions fill near-black with white text on hover and keyboard focus in 100ms linear, with transitions removed for reduced motion. Footer Order Now inverts to white fill and near-black text.
 - WEB-016-CARDS v1 (Giant type) keeps the three photos, 3:4 crop, card material and rounded corners. A full-card fade sits above each photo and below the fixed gloss and title.
 - Titles replace the centered 25px treatment with bold white Georgia, bottom-left at 7% inset and 4% from the bottom: 20cqw for Menu/Catering and 16.7cqw for Our Story.
 - Desktop tilt retains 4.5° maximum rotation and 2px lift; photos counter-drift up to 8px with the same smoothing, while titles float 20px forward. Touch and reduced motion stay static.
+- Newsletter uses #F4F4F4 with #1C1C1C heading and #383838 text; Georgia heading and Arial form controls remain. JRK dimensions: section 594px desktop / 557px phone, vertical padding 95.04px / 55.704px, 280px field, 122×68px button, 12px desktop and 32px stacked phone gap.
+- WEB-017-HERO-MOTION draws the static wave with `y = 94 - 20 × sin(2π × 2.5t + 0.6) × (0.85 + 0.15 × cos(2πt))`, 20px height and 2.5 cycles.
+- The 120px wave and Welcome band share the `#e8f6fa` token; an opaque 8% fade uses a smoothstep ramp over up to 310px, reaching full alpha at the 46px wave crest line.
+- Welcome text/photo, cards and newsletter fade up from 28px over 700ms; stagger delays are 0/150ms for Welcome and 0/130/260ms for cards.
+- Photo wrappers zoom from 1.08→1 over 1400ms; the hero photo drifts down at 0.3× scroll. The footer stays static and reduced motion disables all new motion.
+- WEB-018 aligns the desktop footer Order Now box and Contact-column icon/action group on one centered row, keeping the existing three-column layout and stacked phone layout.
+- Reveals reset after leaving the viewport and play again on re-entry. Home and the wordmark dispatch `pearl:replay-intro` at `/`, resetting reveals and hero drift before the opening plays again; reduced motion jumps to the top without animation.
+- Supplied external URLs were taken from Pearl Island's live website (Oct 28, 2026); verify them with Sober before launch. The blank `/menu` route reuses the `#e8f6fa` Welcome-band token; Community remains in the phone menu and is removed from the footer list.
 - Website owns its entire page shell. Do not reproduce the old software navigation, dark surrounding frame or boxed body workaround.
 
 ## Selected inputs
@@ -28,4 +39,4 @@ Selected motion: normal cursor, center pivot, maximum 4.5 degrees per axis, lift
 
 ## Inputs and review discipline
 
-Production video/card photos, original name lettering, verified business details and destination URLs remain open. The WEB-010 brief approves a temporary Georgia wordmark, exact temporary Welcome copy, phone layout and inactive controls for review. Do not import another business's assets or the rejected implementation. Chat carousel controls, overlay arrows and annotation UI are not part of the page. Diego's visual acceptance is still required; build success alone does not complete review.
+Production video, approved Pearl Island photos to replace the current placeholders, original name lettering, verified business details and destination URLs remain open. The WEB-010 brief approves a temporary Georgia wordmark, exact temporary Welcome copy, phone layout and inactive controls for review. Do not import another business's assets or the rejected implementation. Chat carousel controls, overlay arrows and annotation UI are not part of the page. Diego's visual acceptance is still required; build success alone does not complete review.

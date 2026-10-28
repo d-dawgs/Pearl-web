@@ -6,6 +6,14 @@
   background: var(--white);
 }
 .stage { position: relative; min-width: 0; aspect-ratio: 3 / 4; container-type: inline-size; isolation: isolate; }
+.stage:has(.cardLink:focus-visible) { outline: 3px solid #1C1C1C; outline-offset: 4px; border-radius: 26px; }
+.reveal {
+  position: absolute;
+  inset: 0;
+  transition: opacity 700ms cubic-bezier(.22,.61,.36,1), transform 700ms cubic-bezier(.22,.61,.36,1);
+}
+.reveal[data-reveal-delay="130"] { transition-delay: 130ms; }
+.reveal[data-reveal-delay="260"] { transition-delay: 260ms; }
 .card {
   position: absolute;
   inset: 0;
@@ -43,6 +51,16 @@
   transform: translate3d(var(--photo-drift-x, 0px), var(--photo-drift-y, 0px), 0) scale(1.12);
   transform-origin: center;
 }
+.zoomFrame { position: absolute; inset: 0; transition: transform 1400ms cubic-bezier(.22,.61,.36,1); }
+.reveal[data-reveal-delay="130"] .zoomFrame { transition-delay: 130ms; }
+.reveal[data-reveal-delay="260"] .zoomFrame { transition-delay: 260ms; }
+:global(html[data-motion-ready="pending"]) .reveal[data-scroll-reveal]:not([data-revealed="true"]),
+:global(html[data-motion-ready="true"]) .reveal[data-scroll-reveal]:not([data-revealed="true"]) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+:global(html[data-motion-ready="pending"]) .reveal[data-scroll-reveal]:not([data-revealed="true"]) .zoomFrame,
+:global(html[data-motion-ready="true"]) .reveal[data-scroll-reveal]:not([data-revealed="true"]) .zoomFrame { transform: scale(1.08); }
 .image[data-card="Menu"] .photo { object-position: 50% 45%; }
 .image[data-card="Catering"] .photo { object-position: 40% 55%; }
 .image[data-card="Our Story"] .photo { object-position: 45% 25%; }
@@ -72,6 +90,8 @@
   text-shadow: 0 2px 14px rgb(0 0 0 / .3);
   transform: translateZ(20px);
 }
+.cardLink { position: absolute; z-index: 4; inset: 0; display: block; pointer-events: auto; }
+.cardLink:focus-visible { outline: none; }
 .storyTitle { font-size: 16.7cqw; }
 @media (max-width: 899px) {
   .cards { grid-template-columns: minmax(0, 420px); justify-content: center; gap: 24px; padding-right: 20px; padding-left: 20px; }
@@ -80,4 +100,8 @@
   .card { transform: none !important; }
   .photo { transform: none !important; }
   .title { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .zoomFrame { transition: none !important; }
 }

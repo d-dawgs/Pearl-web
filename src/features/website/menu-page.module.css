@@ -1,0 +1,9 @@
+.menuPage {
+  width: 100%;
+  min-height: max(60vh, calc(100svh - 90px));
+  background: var(--welcome-band, #e8f6fa);
+}
+
+@media (max-width: 1099px) {
+  .menuPage { min-height: max(60vh, calc(100svh - 88px - env(safe-area-inset-top))); }
+}

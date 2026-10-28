@@ -13,3 +13,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+# Temporary placeholder photos — source/license unknown, do not publish
+public/images/welcome-greens.jpg
+public/images/card-menu.jpg
+public/images/card-catering.jpg

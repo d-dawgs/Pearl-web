@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./destination-cards.module.css";
 
@@ -101,18 +102,23 @@ function DestinationCard({ title }: { title: (typeof cards)[number] }) {
 
   return (
     <div ref={stageRef} className={styles.stage}>
-      <article ref={cardRef} className={styles.card}>
-        <div className={styles.image} data-card={title}>
-          <Image
-            src={cardImages[title]}
-            alt=""
-            fill
-            sizes="(min-width: 900px) 33vw, 420px"
-            className={styles.photo}
-          />
-        </div>
-        <h3 className={`${styles.title} ${title === "Our Story" ? styles.storyTitle : ""}`}>{title}</h3>
-      </article>
+      <div className={styles.reveal} data-scroll-reveal data-reveal-delay={title === "Menu" ? "0" : title === "Catering" ? "130" : "260"}>
+        <article ref={cardRef} className={styles.card}>
+          <div className={styles.image} data-card={title}>
+            <div className={styles.zoomFrame}>
+              <Image
+                src={cardImages[title]}
+                alt=""
+                fill
+                sizes="(min-width: 900px) 33vw, 420px"
+                className={styles.photo}
+              />
+            </div>
+          </div>
+          <h3 className={`${styles.title} ${title === "Our Story" ? styles.storyTitle : ""}`}>{title}</h3>
+          {title === "Menu" && <Link className={styles.cardLink} href="/menu" aria-label="Menu" />}
+        </article>
+      </div>
     </div>
   );
 }

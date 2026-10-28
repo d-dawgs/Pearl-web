@@ -1,14 +1,17 @@
 .footer {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 23vw));
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto;
   justify-content: space-between;
   column-gap: 0;
   row-gap: 11px;
   padding: 47.52px 3vw;
   background: var(--ink);
   color: var(--white);
+  font-family: var(--footer-text-font, Georgia);
 }
+
+.footer a { color: inherit; }
 
 .footer button {
   max-width: 100%;
@@ -30,34 +33,52 @@
   margin-top: 40px;
 }
 
-.pages button {
+.pages button, .pages a {
+  display: block;
   min-height: 30.88px;
-  font: 700 26.368px/1.171875 Georgia, "Times New Roman", serif;
-  letter-spacing: -0.015em;
+  font: 600 26.368px/1.1712 var(--footer-display-font, Georgia);
+  letter-spacing: normal;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.12em;
+  text-underline-offset: 0.2em;
   overflow-wrap: anywhere;
 }
 
 .orderButton {
   grid-column: 1;
   grid-row: 2;
-  align-self: start;
+  align-self: center;
   display: flex;
   width: min(100%, 330.2px);
   height: 109.3px;
   align-items: center;
   justify-content: center;
-  margin-top: 84px;
+  margin-top: 0;
   padding: 0 26.72px;
   border: 2px solid var(--white) !important;
   border-radius: 6.4px;
   background: transparent !important;
   color: var(--white) !important;
-  font: 400 16px/normal Georgia, serif;
+  font: 500 16px/normal var(--footer-text-font, Georgia);
+  letter-spacing: 0.32px;
   text-align: center !important;
   white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 100ms linear, color 100ms linear, border-color 100ms linear;
+}
+
+@media (hover: hover) {
+  .orderButton:hover {
+    border-color: var(--white) !important;
+    background: var(--white) !important;
+    color: var(--ink) !important;
+  }
+}
+
+.orderButton:focus-visible {
+  border-color: var(--white) !important;
+  background: var(--white) !important;
+  color: var(--ink) !important;
 }
 
 .column {
@@ -74,16 +95,27 @@
   grid-row: 1;
 }
 
+.contactBottomRow {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 24px;
+  min-width: 0;
+}
+
 .column h2 {
   margin: 0 0 32px;
-  font: 500 26.368px/1.171875 Georgia, serif;
+  font: 600 26.368px/1.1712 var(--footer-display-font, Georgia);
+  letter-spacing: normal;
 }
 
 .location address {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font: 400 19.456px/1.4 Arial, Helvetica, sans-serif;
+  font: 400 19.456px/1.4 var(--footer-text-font, Georgia);
   font-style: normal;
   overflow-wrap: anywhere;
 }
@@ -96,7 +128,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font: 400 16px/1.4 Arial, Helvetica, sans-serif;
+  font: 400 16px/1.4 var(--footer-text-font, Georgia);
 }
 
 .contactDetails p {
@@ -105,14 +137,11 @@
 }
 
 .socials {
-  grid-column: 3;
-  grid-row: 2;
   display: flex;
   width: max-content;
-  height: 69.2px;
+  min-height: 44px;
   align-items: center;
   gap: 0;
-  margin-top: 124px;
 }
 
 .footer .socialButton {
@@ -126,6 +155,7 @@
   border: 0;
   background: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .socialButton svg {
@@ -134,14 +164,12 @@
 }
 
 .extras {
-  grid-column: 3;
-  grid-row: 3;
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 16px;
-  font: 400 16px/1.4 Arial, Helvetica, sans-serif;
+  font: 400 16px/1.4 var(--footer-text-font, Georgia);
 }
+.extras a { text-decoration: none; }
 
 @media (max-width: 899px) {
   .footer {
@@ -152,8 +180,9 @@
   }
 
   .pages { margin-top: 0; padding-bottom: 70px; }
-  .pages button { min-height: 25.86px; font-size: 22.0768px; line-height: 1.171875; }
-  .socials { height: 59px; margin-top: 0; }
+  .pages button, .pages a { min-height: 25.86px; font-size: 22.0768px; line-height: 1.1712; }
+  .contactBottomRow { flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 5px; }
+  .socials { min-height: 44px; }
   .orderButton {
     width: max-content;
     min-width: 121.8px;
@@ -161,8 +190,11 @@
     margin-top: 0;
     padding-inline: 24px;
   }
-  .column h2 { margin-bottom: 32px; font-size: 22.0768px; line-height: 1.171875; }
+  .column h2 { margin-bottom: 32px; font-size: 22.0768px; line-height: 1.1712; }
   .location { margin-top: 35px; }
   .location address { font-size: 18.0256px; line-height: 1.4; }
-  .extras { margin-top: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orderButton { transition: none !important; }
 }
