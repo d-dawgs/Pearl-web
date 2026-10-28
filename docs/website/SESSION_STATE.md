@@ -1,6 +1,6 @@
 # Website session state — October 27, 2026
 
-**Status: WEB-012-HEADER-SCROLL v1 — Ready for Diego review. WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.** The approved header behavior and footer type refinement are implemented; lint, typecheck, build, and browser interaction checks passed. No hydration warnings appeared. The browser logged one existing `/favicon.ico` 404, left outside this task's file scope.
+**Status: WEB-016-CARDS v1 (Giant type) — Ready for Diego review. WEB-012-HEADER-SCROLL v1 — Ready for Diego review. WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.** The approved header behavior and footer type refinement are implemented; lint, typecheck, build, and browser interaction checks passed. No hydration warnings appeared. The browser logged one existing `/favicon.ico` 404, left outside this task's file scope.
 
 ## Last accepted
 
@@ -9,6 +9,8 @@ Independent blank website foundation, technically checked October 26. The draft 
 ## Current
 
 WEB-012-HEADER-SCROLL v1 adds the top fade and scroll-direction header behavior. The footer's page labels now use the established Georgia display face with restrained tracking; contact details remain in Arial. WEB-011-FOOTER v1 adds the measured dark footer layout and Google-listing contact details. The listing facts remain unverified and no destinations are active.
+
+WEB-016-CARDS v1 (Giant type) changes the card title scale and placement, fixes the readability fade order, adds pointer-synchronized photo drift, and floats the title while preserving the rounded clip.
 
 The complete designed homepage module is implemented on `diego/homepage-design`; it includes the full-width desktop header, moving underline, accepted phone menu, beach photo, Welcome, three selected portrait cards and motion, inactive newsletter presentation and dark footer. No destination or external service is active.
 

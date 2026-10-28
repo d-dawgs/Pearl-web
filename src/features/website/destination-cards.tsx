@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./destination-cards.module.css";
 
 const cards = ["Menu", "Catering", "Our Story"] as const;
+const cardImages = {
+  Menu: "/images/card-menu.jpg",
+  Catering: "/images/card-catering.jpg",
+  "Our Story": "/images/card-our-story.jpg",
+} as const;
 
 function DestinationCard({ title }: { title: (typeof cards)[number] }) {
   const stageRef = useRef<HTMLDivElement>(null);
@@ -15,27 +21,29 @@ function DestinationCard({ title }: { title: (typeof cards)[number] }) {
     if (!stage || !card) return;
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const current = [0, 0, 0];
-    const target = [0, 0, 0];
+    const current = [0, 0, 0, 0, 0];
+    const target = [0, 0, 0, 0, 0];
     let frame = 0;
     let lastTime = 0;
     const canMove = () => finePointer.matches && !reducedMotion.matches;
     const paint = () => {
       card.style.transform = `perspective(1000px) rotateX(${current[0].toFixed(4)}deg) rotateY(${current[1].toFixed(4)}deg) translateY(${current[2].toFixed(4)}px)`;
+      card.style.setProperty("--photo-drift-x", `${current[3].toFixed(4)}px`);
+      card.style.setProperty("--photo-drift-y", `${current[4].toFixed(4)}px`);
     };
     const settle = (time: number) => {
       const dt = Math.min(.032, Math.max(.001, lastTime ? (time - lastTime) / 1000 : 1 / 60));
       lastTime = time;
       const alpha = 1 - Math.exp(-3 * dt / .4);
       let moving = false;
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < current.length; i++) {
         current[i] += (target[i] - current[i]) * alpha;
         if (Math.abs(target[i] - current[i]) > .001) moving = true;
       }
       paint();
       if (moving && canMove()) frame = requestAnimationFrame(settle);
       else {
-        for (let i = 0; i < 3; i++) current[i] = target[i];
+        for (let i = 0; i < current.length; i++) current[i] = target[i];
         paint();
         frame = 0;
         lastTime = 0;
@@ -65,6 +73,8 @@ function DestinationCard({ title }: { title: (typeof cards)[number] }) {
       target[0] = -y * 4.5;
       target[1] = x * 4.5;
       target[2] = -2;
+      target[3] = -x * 8;
+      target[4] = -y * 8;
       start();
     };
     const leave = () => {
@@ -92,9 +102,16 @@ function DestinationCard({ title }: { title: (typeof cards)[number] }) {
   return (
     <div ref={stageRef} className={styles.stage}>
       <article ref={cardRef} className={styles.card}>
-        <div className={styles.image}>
-          <h3>{title}</h3>
+        <div className={styles.image} data-card={title}>
+          <Image
+            src={cardImages[title]}
+            alt=""
+            fill
+            sizes="(min-width: 900px) 33vw, 420px"
+            className={styles.photo}
+          />
         </div>
+        <h3 className={`${styles.title} ${title === "Our Story" ? styles.storyTitle : ""}`}>{title}</h3>
       </article>
     </div>
   );

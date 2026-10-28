@@ -13,13 +13,16 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - Desktop footer measurements: 3vw side margins, 47.52px vertical padding, and three columns about 330px wide. Page links and headings use 26.37px/30.88px; location text 19.46px/27.24px; contact lines 16px/22.4px; Order Now is 330.2×109.3px.
 - Phone footer measurements at 390px: 6vw side margins and 27.85px vertical padding. Page links and headings use 22.08px/25.86px; location text 18.03px/25.24px; Order Now is 121.8×59px; social glyphs are 20px with 12px visual spacing.
 - Footer page labels use bold Georgia with restrained negative tracking and a fine, offset static underline; contact and address details remain Arial.
+- WEB-016-CARDS v1 (Giant type) keeps the three photos, 3:4 crop, card material and rounded corners. A full-card fade sits above each photo and below the fixed gloss and title.
+- Titles replace the centered 25px treatment with bold white Georgia, bottom-left at 7% inset and 4% from the bottom: 20cqw for Menu/Catering and 16.7cqw for Our Story.
+- Desktop tilt retains 4.5° maximum rotation and 2px lift; photos counter-drift up to 8px with the same smoothing, while titles float 20px forward. Touch and reduced motion stay static.
 - Website owns its entire page shell. Do not reproduce the old software navigation, dark surrounding frame or boxed body workaround.
 
 ## Selected inputs
 
 UI palette: cyan `#00A1CA`, active/navigation blue `#206B8D`, white `#FFFFFF`, body charcoal `#383838`, near-black `#1C1C1C`. Transparency/shadows derived from these are allowed. Reference sites supplied layout/material inspiration, not their branding, copy or production media. Color-role/mobile/copy details require the consolidated design review.
 
-Cards: Menu, Catering, Our Story; 3:4 full-media portrait panels, title only at bottom center, no descriptions/arrows/badges/inner buttons. Keep the restrained dark layered material, pale edge/inset sheen and subtle shadow from the latest study, not the earlier short/top-title tiles or saturated replacement fills.
+Cards: Menu, Catering, Our Story; 3:4 full-media portrait panels, title only, no descriptions/arrows/badges/inner buttons. Keep the restrained dark layered material, pale edge/inset sheen and subtle shadow from the latest study, not the earlier short/top-title tiles or saturated replacement fills. The Giant type option supersedes the former centered small title.
 
 Selected motion: normal cursor, center pivot, maximum 4.5 degrees per axis, lift 2px, 400ms smooth non-overshooting follow and fixed leading gloss opacity 0.07. No spring, ball cursor or cursor-following spotlight. Use an untransformed outer pointer area; reduced-motion/touch receives a static treatment. Exact implementation belongs to the approved feature brief.
 

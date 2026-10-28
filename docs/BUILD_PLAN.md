@@ -1,11 +1,11 @@
 # Website build plan
 
-Status: WEB-012-HEADER-SCROLL v1 — Ready for Diego review. WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review. The standalone foundation remains the last accepted work; the website PRD is still a draft.
+Status: WEB-016-CARDS v1 (Giant type) — Ready for Diego review. WEB-012-HEADER-SCROLL v1 — Ready for Diego review. WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review. The standalone foundation remains the last accepted work; the website PRD is still a draft.
 
 ## Current and next
 
 - Last accepted: independent blank foundation, technically checked October 26.
-- Current: review the complete homepage, footer, and scroll-responsive header modules against their approved references. Diego has not accepted them yet; see [homepage result evidence](website/WEB-010-HOME-v1-RESULT.md).
+- Current: WEB-016-CARDS v1 (Giant type) replaces the centered small card title with large bottom-left type, a visible photo fade, synchronized drift and title float; it preserves the selected photos, card material and tilt motion. Diego has not accepted the homepage modules yet; see [homepage result evidence](website/WEB-010-HOME-v1-RESULT.md).
 - Next: Diego reviews WEB-010; then approve and build remaining public pages one by one, beginning with their content and designs. Wiring and production activation remain later steps.
 - Blockers/inputs: production lettering, hero/card media, verified business details, destination URLs and newsletter provider. Footer facts from Google listing (Oct 27): kitchen name, address, phone, email — verify with Sober before launch. Hours shown elsewhere later. The old rejected homepage implementation was not imported.
 
