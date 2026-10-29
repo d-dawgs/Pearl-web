@@ -108,7 +108,7 @@
  .platterGrid { gap:12px; }
  .platterCard { padding:16px 12px; }
  .platterPrice { margin:20px 0; }
- .comboRow { gap:4px; flex-wrap:wrap; font-size:13px; }
+ .comboRow { gap:4px; font-size:13px; }
  .comboRow > b { margin-left:auto; }
  .orderingRow { display:grid; gap:16px; margin-top:32px; }
  .orderingRow .orderNow { width:100%; }
@@ -119,5 +119,6 @@
 @media (prefers-reduced-motion:reduce) {
  .menuPage *, .menuPage *::before, .menuPage *::after { animation:none!important; transition:none!important; }
  .reveal[data-reveal="waiting"] { opacity:1; transform:none; }
+ .leaving { opacity:1; }
  .menuItem:hover .photo,.platterCard:hover,.wingServingCard:hover { transform:none; }
 }

@@ -76,12 +76,12 @@ export function MenuPage() {
   return <div className={styles.menuPage}>
     <header className={styles.hero}><span className={styles.heroRings} aria-hidden="true" /><div className={styles.container}><p className={styles.heroEyebrow}>{menuCopy.hero.eyebrow}</p><h1>{menuCopy.hero.headline}</h1><p className={styles.heroSubtitle}>{menuCopy.hero.subtitle}</p></div></header>
     <CategoryBar categories={menuData.categories} activeId={activeCategory} onSelect={setCategory} />
-    <section id="menu-category-panel" role="tabpanel" aria-labelledby={`menu-category-${activeCategory}`} className={styles.categoryPanel}>
+    <section id="menu-category-panel" role="tabpanel" aria-labelledby={`menu-category-${shownCategory}`} aria-busy={leaving} className={styles.categoryPanel}>
       <header className={`${styles.container} ${styles.categoryHeader}`} data-category-header>
         <div className={styles.eyebrowSpace}>{shownCategory === "wing-wednesdays" && <p>{menuCopy.wingEyebrow}</p>}</div>
         <h2>{menuCopy.categoryHeading[shownCategory]}</h2><p className={styles.categorySubtitle}>{menuCopy.categoryIntro[shownCategory]}</p>
       </header>
-      <div key={shownCategory} className={`${styles.categoryBody} ${leaving ? styles.leaving : styles.entering}`} data-category-body>
+      <div key={shownCategory} className={`${styles.categoryBody} ${leaving ? styles.leaving : styles.entering}`} data-category-body inert={leaving}>
         {shownCategory === "platters" ? <>
           <div className={styles.container}><ItemGrid items={entries} onOpen={openItem} /></div>
           <Reveal className={styles.platterSection}><div className={styles.container}><h3 className={styles.subheading}>{menuCopy.platterHeading}</h3><p className={styles.supporting}>{menuCopy.platterIntro}</p><div className={styles.platterGrid}>{menuData.platters.map(platter => <article className={styles.platterCard} key={platter.id}><h4>{platter.name}</h4><p className={styles.platterDescription}>{platter.description}</p><p className={styles.platterPrice}>{platter.price}</p><div className={styles.comboRow}><span><strong>{menuCopy.comboHeading}</strong><i>{menuCopy.comboDescription}</i></span><b>{menuCopy.comboPrice}</b></div></article>)}</div><OrderingRow note={menuCopy.platterDisclaimer} /></div></Reveal>
