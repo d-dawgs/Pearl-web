@@ -28,6 +28,9 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - Reveals reset after leaving the viewport and play again on re-entry. Home and the wordmark dispatch `pearl:replay-intro` at `/`, resetting reveals and hero drift before the opening plays again; reduced motion jumps to the top without animation.
 - Supplied external URLs were taken from Pearl Island's live website (Oct 28, 2026); verify them with Sober before launch. The blank `/menu` route reuses the `#e8f6fa` Welcome-band token; Community remains in the phone menu and is removed from the footer list.
 - WEB-019 v5 uses a white 56px category bar: 14px Arial text, 28px gaps and one blue underline transitioning for 320ms; the hero ends with a clean edge.
+- WEB-019 v6 menu images are transparent PNG cutouts on transparent stages, with no blend mode or visible surface behind them.
+- Image dimensions come from each PNG; PLATTER, SIDE_TRAY, CUP, TALL and WIDE_TRAY classes set the desktop, tablet, phone and modal size limits.
+- Every item image shares the same soft drop shadow, and TALL images also have a contact shadow beneath them.
 - Shared category headers use Georgia 36px desktop / 28px phone with 48px / 32px top padding and 32px spacing before content; the wing eyebrow occupies reserved space.
 - Menu content follows an 8px rhythm, white image surfaces, 18px Georgia names and 13px Arial prices; clean photos are contained, centered and capped below natural size even on hover.
 - Platter Options retains its pale cyan band, with 15px Arial names, 32px Georgia prices, a hairline divider and equal-height cards; subsection headings share a 24px Georgia style.

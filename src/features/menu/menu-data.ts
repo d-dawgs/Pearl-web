@@ -8,10 +8,12 @@ export type MenuEntry = {
   description: string;
   naturalWidth?: number;
   naturalHeight?: number;
-  framing?: { position: string; fill: number };
+  shape?: MenuImageShape;
   combo?: boolean;
   surcharge?: number;
 };
+
+export type MenuImageShape = "PLATTER" | "SIDE_TRAY" | "CUP" | "TALL" | "WIDE_TRAY";
 
 export const menuCopy = {
   hero: { eyebrow: "CARIBBEAN FLAVORS · THE MENU", headline: "Island Flavor.", subtitle: "A little heat, a little tang, and a whole lot of flavor." },
@@ -49,187 +51,66 @@ export const menuCopy = {
 } as const;
 
 const dimensions: Record<string, [number, number]> = {
-  "chickpea-stew": [
-    1223,
-    1442
-  ],
-  "creole-beans": [
-    1222,
-    1448
-  ],
-  "curry-chicken": [
-    1226,
-    1427
-  ],
-  "curry-tofu": [
-    1222,
-    1374
-  ],
-  "drink-blue-ridge-bucha": [
-    736,
-    1291
-  ],
-  "drink-hibiscus": [
-    1216,
-    1187
-  ],
-  "drink-koto-ginger-beer-passion": [
-    792,
-    1283
-  ],
-  "drink-koto-ginger-beer": [
-    769,
-    1224
-  ],
-  "drink-limeade": [
-    1215,
-    1225
-  ],
-  "drink-lychee-lemonade": [
-    1205,
-    1189
-  ],
-  "drink-malta": [
-    622,
-    1346
-  ],
-  "drink-pearl-island-water": [
-    614,
-    1332
-  ],
-  "drink-tamarind": [
-    1151,
-    1128
-  ],
-  "drink-ting": [
-    1106,
-    1141
-  ],
-  "drink-tropical-lemonade": [
-    1163,
-    1198
-  ],
-  "jerk-chicken": [
-    1228,
-    1440
-  ],
-  "jerk-tofu": [
-    1225,
-    1437
-  ],
-  "product-aioli-bottle": [
-    613,
-    1299
-  ],
-  "product-aioli-vegan-bottle": [
-    618,
-    1305
-  ],
-  "product-pikliz-12oz": [
-    966,
-    1289
-  ],
-  "product-pikliz-jar": [
-    824,
-    1305
-  ],
-  "product-shallot-vinaigrette": [
-    526,
-    1335
-  ],
-  "roasted-pork": [
-    1224,
-    1398
-  ],
-  "salad-kale": [
-    1626,
-    1138
-  ],
-  "side-creole-beans": [
-    312,
-    283
-  ],
-  "side-curry-chicken": [
-    379,
-    260
-  ],
-  "side-curry-tofu": [
-    335,
-    286
-  ],
-  "side-extra-aioli-vegan": [
-    238,
-    201
-  ],
-  "side-extra-aioli": [
-    1210,
-    1112
-  ],
-  "side-extra-pikliz": [
-    243,
-    224
-  ],
-  "side-fried-plantains-3": [
-    264,
-    279
-  ],
-  "side-jerk-chicken": [
-    383,
-    263
-  ],
-  "side-jerk-tofu": [
-    359,
-    283
-  ],
-  "side-kale-salad": [
-    328,
-    281
-  ],
-  "side-plantain-platter-6": [
-    400,
-    270
-  ],
-  "side-pulled-pork": [
-    333,
-    288
-  ],
-  "side-rice-pigeon-peas": [
-    340,
-    296
-  ],
-  "side-sous-poulet": [
-    321,
-    283
-  ],
-  "side-sous-shu": [
-    337,
-    299
-  ],
-  "sous-poulet": [
-    1215,
-    1347
-  ],
-  "sous-shu": [
-    1226,
-    1419
-  ],
-  "wings-curry": [
-    1354,
-    1003
-  ],
-  "wings-jerk": [
-    1354,
-    1029
-  ]
+  "chickpea-stew": [1015, 1165],
+  "creole-beans": [1028, 1200],
+  "curry-chicken": [1058, 1163],
+  "curry-tofu": [1035, 1116],
+  "drink-blue-ridge-bucha": [541, 1063],
+  "drink-hibiscus": [1091, 1062],
+  "drink-koto-ginger-beer-passion": [601, 1110],
+  "drink-koto-ginger-beer": [532, 1018],
+  "drink-limeade": [1090, 1080],
+  "drink-lychee-lemonade": [995, 980],
+  "drink-malta": [419, 1132],
+  "drink-pearl-island-water": [473, 1189],
+  "drink-tamarind": [1035, 1011],
+  "drink-ting": [973, 960],
+  "drink-tropical-lemonade": [1038, 1016],
+  "jerk-chicken": [1060, 1165],
+  "jerk-tofu": [1042, 1177],
+  "product-aioli-bottle": [423, 1061],
+  "product-aioli-vegan-bottle": [402, 1061],
+  "product-pikliz-12oz": [705, 1131],
+  "product-pikliz-jar": [632, 1146],
+  "product-shallot-vinaigrette": [351, 1189],
+  "roasted-pork": [1043, 1133],
+  "salad-kale": [1200, 774],
+  "side-creole-beans": [816, 766],
+  "side-curry-chicken": [964, 665],
+  "side-curry-tofu": [800, 714],
+  "side-extra-aioli-vegan": [568, 566],
+  "side-extra-aioli": [983, 957],
+  "side-extra-pikliz": [597, 581],
+  "side-fried-plantains-3": [630, 719],
+  "side-jerk-chicken": [1072, 714],
+  "side-jerk-tofu": [890, 746],
+  "side-kale-salad": [770, 733],
+  "side-plantain-platter-6": [980, 736],
+  "side-pulled-pork": [912, 791],
+  "side-rice-pigeon-peas": [838, 752],
+  "side-sous-poulet": [790, 717],
+  "side-sous-shu": [922, 822],
+  "sous-poulet": [1022, 1090],
+  "sous-shu": [1084, 1200],
+  "wings-curry": [1169, 732],
+  "wings-jerk": [1172, 767],
 };
 
-const entry = (id: string, name: string, price: string, description: string, photo?: string, framing?: MenuEntry["framing"]): MenuEntry => {
+const imageShapes: Record<string, MenuImageShape> = {
+  "jerk-chicken": "PLATTER", "roasted-pork": "PLATTER", "curry-chicken": "PLATTER", "sous-poulet": "PLATTER", "curry-tofu": "PLATTER", "jerk-tofu": "PLATTER", "creole-beans": "PLATTER", "sous-shu": "PLATTER", "chickpea-stew": "PLATTER",
+  "side-curry-chicken": "SIDE_TRAY", "side-jerk-chicken": "SIDE_TRAY", "side-pulled-pork": "SIDE_TRAY", "side-sous-poulet": "SIDE_TRAY", "side-creole-beans": "SIDE_TRAY", "side-curry-tofu": "SIDE_TRAY", "side-jerk-tofu": "SIDE_TRAY", "side-sous-shu": "SIDE_TRAY", "side-rice-pigeon-peas": "SIDE_TRAY", "side-plantain-platter-6": "SIDE_TRAY", "side-kale-salad": "SIDE_TRAY", "side-fried-plantains-3": "SIDE_TRAY",
+  "side-extra-aioli": "CUP", "side-extra-aioli-vegan": "CUP", "side-extra-pikliz": "CUP", "drink-tropical-lemonade": "CUP", "drink-limeade": "CUP", "drink-hibiscus": "CUP", "drink-tamarind": "CUP", "drink-lychee-lemonade": "CUP", "drink-ting": "CUP",
+  "drink-malta": "TALL", "drink-koto-ginger-beer": "TALL", "drink-koto-ginger-beer-passion": "TALL", "drink-blue-ridge-bucha": "TALL", "drink-pearl-island-water": "TALL", "product-aioli-bottle": "TALL", "product-aioli-vegan-bottle": "TALL", "product-shallot-vinaigrette": "TALL", "product-pikliz-jar": "TALL", "product-pikliz-12oz": "TALL",
+  "salad-kale": "WIDE_TRAY", "wings-jerk": "WIDE_TRAY", "wings-curry": "WIDE_TRAY",
+};
+
+const entry = (id: string, name: string, price: string, description: string, photo?: string): MenuEntry => {
   const size = photo ? dimensions[photo] : undefined;
   return {
     id, name, price, description,
-    image: photo ? `/images/menu/${photo}.jpg` : undefined,
+    image: photo ? `/images/menu/${photo}.png` : undefined,
     naturalWidth: size?.[0], naturalHeight: size?.[1],
-    framing: photo ? (framing ?? { position: "50% 50%", fill: photo.startsWith("drink-") && size && size[0] / size[1] > .8 ? .78 : .9 }) : undefined,
+    shape: photo ? imageShapes[photo] : undefined,
   };
 };
 const proteinDescription = "Served as a platter with rice with pigeon peas, kale salad, fried plantains, aioli and pikliz.";
@@ -257,7 +138,7 @@ export const menuData = {
     entry("drink-tropical-lemonade", "Tropical Lemonade", "+$2.00", "Tropical Lemonade · +$2.00.", "drink-tropical-lemonade"), entry("drink-limeade", "Limeade", "+$1.00", "Limeade · +$1.00.", "drink-limeade"), entry("drink-hibiscus", "Hibiscus Drink", "+$1.00", "Hibiscus Drink · +$1.00.", "drink-hibiscus"), entry("drink-tamarind", "Tamarind Drink", "+$1.00", "Tamarind Drink · +$1.00.", "drink-tamarind"), entry("drink-lychee-lemonade", "Lychee Lemonade", "+$2.00", "Lychee Lemonade · +$2.00.", "drink-lychee-lemonade"), entry("drink-ting", "Ting – Sparkling Grapefruit", "+$0.50", "Ting – Sparkling Grapefruit · +$0.50.", "drink-ting"), entry("drink-non-alcoholic", "Non-Alcoholic", "+$0.25", "Non-Alcoholic · +$0.25."), entry("drink-malta", "Malta – Malt Beverage", "12 oz +$1.50 · 7 oz no extra charge", "Malta – Malt Beverage: 12 oz +$1.50, 7 oz no extra charge.", "drink-malta"), entry("drink-koto-ginger-beer", "KOTO Ginger Beer", "+$1.00", "Traditional, Passion Fruit, Tamarind, Sorrel.", "drink-koto-ginger-beer"), entry("drink-blue-ridge-bucha", "Blue Ridge Bucha", "+$2.00", "Original Ginger, Bluegrass, Elderflower Sunrise, Black Raspberry, Jasmine Grape, Wild Pear.", "drink-blue-ridge-bucha"), entry("drink-pearl-island-water", "Pearl Island Water", "No extra charge · aluminum bottle +$0.50", "Pearl Island Water: aluminum bottle +$0.50.", "drink-pearl-island-water"), entry("drink-cafe-sin-leche", "Cafe sin Leche – Dairy-Free Coffee", "+$2.00", "Cafe sin Leche – Dairy-Free Coffee · +$2.00."),
   ],
   products: [
-    entry("product-shallot-vinaigrette", "(16oz) Bottle PI Shallot Vinaigrette", "$8.00", "Pearl Island Shallot Vinaigrette.", "product-shallot-vinaigrette"), entry("product-pikliz-12oz", "12oz Pikliz – Caribbean Coleslaw", "$8.00", "Pikliz is a Caribbean slaw (cabbage, carrots and onions) brined in a spicy habanero citrus brine.", "product-pikliz-12oz"), entry("product-pikliz-jar", "Pikliz Jar (12oz)", "$7.00", "Pikliz is a spicy pickled coleslaw that is a signature Haitian dipikliz is prepared with fresh ingredients and naturally preserved in a citrus brine. A versatile condiment that brings a taste of the Caribbean.", "product-pikliz-jar"), entry("product-pearl-island-pikliz", "Pearl Island Pikliz", "$8.00–$10.00", "Pikliz is a Caribbean slaw (cabbage, carrots and onions) brined in a spicy habanero citrus brine.", "product-pikliz-12oz"), entry("product-signature-drinks", "PI Signature Drinks", "$12.00–$45.00", "Tropical Lemonade: berry-infused lemonade. Limeade: a hot-weather classic. Anaji: spicy piña colada. Cafe con Leche: dark-roasted coffee, sweetened, creamed and infused with cinnamon.", "drink-tropical-lemonade"), entry("product-aioli", "(16oz) Bottle Aioli", "$8.00", "Garlic-infused lemon aioli.", "product-aioli-bottle"), entry("product-aioli-vegan", "(16oz) Bottle Aioli (Vegan)", "$8.00", "Garlic-infused vegan lemon aioli.", "product-aioli-vegan-bottle"),
+    entry("product-shallot-vinaigrette", "(16oz) Bottle PI Shallot Vinaigrette", "$8.00", "Pearl Island Shallot Vinaigrette.", "product-shallot-vinaigrette"), entry("product-pikliz-12oz", "12oz Pikliz – Caribbean Coleslaw", "$8.00", "Pikliz is a Caribbean slaw (cabbage, carrots and onions) brined in a spicy habanero citrus brine.", "product-pikliz-12oz"), entry("product-pikliz-jar", "Pikliz Jar (12oz)", "$7.00", "Pikliz is a spicy pickled coleslaw that is a signature Haitian dipikliz is prepared with fresh ingredients and naturally preserved in a citrus brine. A versatile condiment that brings a taste of the Caribbean.", "product-pikliz-jar"), entry("product-pearl-island-pikliz", "Pearl Island Pikliz", "$8.00–$10.00", "Pikliz is a Caribbean slaw (cabbage, carrots and onions) brined in a spicy habanero citrus brine.", "product-pikliz-12oz"), entry("product-aioli", "(16oz) Bottle Aioli", "$8.00", "Garlic-infused lemon aioli.", "product-aioli-bottle"), entry("product-aioli-vegan", "(16oz) Bottle Aioli (Vegan)", "$8.00", "Garlic-infused vegan lemon aioli.", "product-aioli-vegan-bottle"),
   ],
   wingServings: [
     { name: "Wing Platter", price: "$18.00", pieces: "6 pieces", description: "Rice with pigeon peas, kale salad, fried plantains, aioli and pikliz." },

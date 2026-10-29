@@ -1,6 +1,6 @@
 # Website session state — October 27, 2026
 
-**Status: WEB-019 v5 — Menu refinement — Ready for Diego review. WEB-018 v1, WEB-017-HERO-MOTION v1, WEB-016-CARDS v1 (Giant type), WEB-015 v1, WEB-013-PHOTOS v1, WEB-011-FOOTER v2, WEB-012-HEADER-SCROLL v1, WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.**
+**Status: WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review. WEB-018 v1, WEB-017-HERO-MOTION v1, WEB-016-CARDS v1 (Giant type), WEB-015 v1, WEB-013-PHOTOS v1, WEB-011-FOOTER v2, WEB-012-HEADER-SCROLL v1, WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.**
 
 ## Last accepted
 
@@ -17,6 +17,8 @@ WEB-017-HERO-MOTION v1 adds a crisp static wave filled with the shared `#e8f6fa`
 WEB-018 v1 wires Order Now, gift cards, Apply Here and social links to the URLs supplied from Pearl Island's live website (Oct 28, 2026; verify with Sober before launch), adds a blank Menu page, removes Community from the footer only, and makes reveals repeat on re-entry and replay on Home/wordmark clicks.
 
 WEB-019 v5 refines the Tropical Poster menu with 43 clean white-background demo photos, a sliding text category bar, consistent category headers, an 8px spacing rhythm, refined Platter Options and reduced-motion-safe category/hover/reveal animation.
+
+WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review.
 
 WEB-019 v4 keeps only the Tropical Poster menu design and removes the temporary design switch. HD demo photos now cover all proteins, salad, drinks, products, wings and the aioli add-on; remaining side items use lower-resolution crops. Ginger Beer – Non-Alcoholic and Cafe sin Leche remain PI monogram placeholders. The footer links now align with the Location and Contact headings and its smaller Order Now button retains the bottom-row alignment.
 

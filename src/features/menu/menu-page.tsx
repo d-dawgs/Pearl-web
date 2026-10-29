@@ -13,13 +13,12 @@ function OrderLink({ solid = false, modal = false, label = "Order Now" }: { soli
 
 function MenuImage({ item, kind = "gallery", preload = false, alt = "" }: { item: MenuEntry; kind?: "gallery" | "dialog" | "wing"; preload?: boolean; alt?: string }) {
   const photoStyle = {
-    "--natural-width": `${(item.naturalWidth ?? 1) / 1.03}px`,
-    "--natural-height": `${(item.naturalHeight ?? 1) / 1.03}px`,
-    "--photo-fill": `${(kind === "dialog" ? 1 : item.framing?.fill ?? .9) * 100}%`,
-    objectPosition: item.framing?.position ?? "50% 50%",
+    "--natural-width": `${item.naturalWidth ?? 1}px`,
+    "--natural-height": `${item.naturalHeight ?? 1}px`,
   } as CSSProperties;
-  return <span className={`${styles.imageSlot} ${kind === "dialog" ? styles.dialogImageSlot : kind === "wing" ? styles.wingImageSlot : styles.galleryImageSlot}`}>
-    {item.image && item.naturalWidth && item.naturalHeight ? <Image className={styles.photo} src={item.image} alt={alt} width={item.naturalWidth} height={item.naturalHeight} quality={90} sizes={kind === "gallery" ? "(max-width: 600px) 45vw, 320px" : "(max-width: 759px) 90vw, 520px"} style={photoStyle} unoptimized={item.naturalWidth < 600} preload={preload} /> : <span className={styles.monogram} aria-hidden="true">PI</span>}
+  const shapeClass = item.shape ? styles[item.shape] : "";
+  return <span className={`${styles.imageSlot} ${kind === "dialog" ? styles.dialogImageSlot : kind === "wing" ? styles.wingImageSlot : styles.galleryImageSlot} ${item.shape === "TALL" ? styles.tallStage : ""}`}>
+    {item.image && item.naturalWidth && item.naturalHeight ? <Image className={`${styles.photo} ${shapeClass}`} src={item.image} alt={alt} width={item.naturalWidth} height={item.naturalHeight} quality={90} sizes={kind === "dialog" ? "(min-width: 900px) 420px, 90vw" : "(min-width: 900px) 280px, 45vw"} style={photoStyle} preload={preload} /> : <span className={styles.monogram} aria-hidden="true">PI</span>}
   </span>;
 }
 
