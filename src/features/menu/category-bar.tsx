@@ -28,8 +28,7 @@ export function CategoryBar<Id extends string>({ categories, activeId, onSelect 
     const active = row && [...row.querySelectorAll<HTMLButtonElement>("[role=tab]")].find((tab) => tab.dataset.categoryId === activeId);
     if (!row || !viewport || !indicator || !active) return;
 
-    indicator.style.width = `${active.offsetWidth}px`;
-    indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+    indicator.style.transform = `translateX(${active.offsetLeft}px) scaleX(${active.offsetWidth})`;
     indicator.dataset.ready = "true";
 
     const inset = 16;
