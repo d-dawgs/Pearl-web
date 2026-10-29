@@ -1,6 +1,6 @@
 # Website session state — October 27, 2026
 
-**Status: WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review. WEB-018 v1, WEB-017-HERO-MOTION v1, WEB-016-CARDS v1 (Giant type), WEB-015 v1, WEB-013-PHOTOS v1, WEB-011-FOOTER v2, WEB-012-HEADER-SCROLL v1, WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review.**
+**Status: WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review. WEB-022 v1, WEB-021 v1, WEB-019 v7 and earlier modules remain Ready for Diego review.**
 
 ## Last accepted
 
@@ -19,6 +19,14 @@ WEB-018 v1 wires Order Now, gift cards, Apply Here and social links to the URLs 
 WEB-019 v5 refines the Tropical Poster menu with 43 clean white-background demo photos, a sliding text category bar, consistent category headers, an 8px spacing rhythm, refined Platter Options and reduced-motion-safe category/hover/reveal animation.
 
 WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review.
+
+WEB-019 v7 — Classic Editorial protein cards, modal × close, Visit & pickup section with map — Ready for Diego review.
+
+WEB-021 v1 — Homepage order: Welcome, shore, cards — Ready for Diego review.
+
+WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review.
+
+Oct 29: This is the presentation version to show Sober for review. It is not Diego's final acceptance or a launch approval. The git-ignored Welcome greens, Menu card and Catering card placeholder photos remain local-only until their source and license are resolved.
 
 WEB-019 v4 keeps only the Tropical Poster menu design and removes the temporary design switch. HD demo photos now cover all proteins, salad, drinks, products, wings and the aioli add-on; remaining side items use lower-resolution crops. Ginger Beer – Non-Alcoholic and Cafe sin Leche remain PI monogram placeholders. The footer links now align with the Location and Contact headings and its smaller Order Now button retains the bottom-row alignment.
 
@@ -41,3 +49,4 @@ Original textured lettering, production video and card photos, verified business
 - Our Story photo is a low-resolution social-media image with text removed; ask Sober for the original.
 - Hero beach photo (already committed and pushed): source/license still unconfirmed.
 - WEB-019: Menu photos are generated demo placeholders (Pearl Island has no real photos yet), to be replaced with real photos later. Confirm with Sober whether side and drink prices add to a $2.00 base; full salad description; full drink list; Pikliz Jar $7.00 (gallery showed $8.00); HD photos still needed for other side items, Ginger Beer – Non-Alcoholic and Cafe sin Leche remain monogram placeholders; real protein descriptions; confirm combo drink eligibility (“from +$2”) in Square.
+- Hours Tue–Fri 11–3, closed Mon/Sat/Sun, preorders for pickup and delivery — from Pearl Island's current site; verify with Sober.

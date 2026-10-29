@@ -1,6 +1,6 @@
 # Website build plan
 
-Status: WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review. WEB-018 v1, WEB-017-HERO-MOTION v1, WEB-016-CARDS v1 (Giant type), WEB-015 v1, WEB-013-PHOTOS v1, WEB-011-FOOTER v2, WEB-012-HEADER-SCROLL v1, WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review. The standalone foundation remains the last accepted work; the website PRD is still a draft.
+Status: WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review. WEB-022 v1 — Palette tokens + color audit + impeccable final audit — Ready for Diego review. WEB-021 v1 — Homepage order: Welcome, shore, cards — Ready for Diego review. WEB-019 v7, WEB-018 v1, WEB-017-HERO-MOTION v1, WEB-016-CARDS v1 (Giant type), WEB-015 v1, WEB-013-PHOTOS v1, WEB-011-FOOTER v2, WEB-012-HEADER-SCROLL v1, WEB-011-FOOTER v1 and WEB-010-HOME v1 remain Ready for Diego review. The standalone foundation remains the last accepted work; the website PRD is still a draft.
 
 ## Current and next
 
@@ -10,6 +10,11 @@ Status: WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signa
 - WEB-018 v1 wires supplied Pearl Island live-site URLs (Oct 28, 2026; verify with Sober before launch), adds a blank Menu route, removes Community from the footer only, aligns the footer's desktop bottom row, and replays reveals on re-entry and Home/wordmark clicks.
 - WEB-019 v5 refines the Tropical Poster menu with 43 clean white-background demo photos, a sliding text category bar, consistent category headers, an 8px spacing rhythm, refined Platter Options and reduced-motion-safe category/hover/reveal animation.
 - WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signature Drinks removed — Ready for Diego review.
+- WEB-019 v7 — Classic Editorial protein cards, modal × close, Visit & pickup section with map — Ready for Diego review.
+- WEB-021 v1 — Homepage order: Welcome, shore, cards — Ready for Diego review.
+- WEB-022 v1 — Palette tokens + color audit + impeccable final audit — Ready for Diego review.
+- WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review.
+- Oct 29 presentation checkpoint: show this version to Sober for review; record his feedback before acceptance or launch. Git-ignored Home placeholder photos remain local-only pending source/license clearance.
 
 - WEB-019 v4 removes the review switch and keeps the Tropical Poster design, replaces 29 photos with supplied HD versions, and tightens the left footer column. Remaining side items use lower-resolution crops; Ginger Beer – Non-Alcoholic and Cafe sin Leche stay monogram placeholders. All menu photos are generated demos to replace with Pearl Island originals later.
 - Next: Diego reviews WEB-010; then approve and build remaining public pages one by one, beginning with their content and designs. Wiring and production activation remain later steps.
@@ -20,6 +25,7 @@ Status: WEB-019 v6 — Transparent PNG menu photos, shape-based sizing, PI Signa
 - Oct 27: Diego dropped the Pearl Island 2 Go page/link (Order Now covers carryout). Hours and pickup info will go in the footer once Sober confirms them; Order Now will open Square when wired. This differs from the draft PRD sitemap.
 - Newsletter background changed to light neutral #F4F4F4 (Diego, Oct 27).
 - WEB-019 open inputs: Confirm with Sober whether side and drink prices add to a $2.00 base; full salad description; full drink list; Pikliz Jar $7.00 (gallery showed $8.00); photos still needed for Vegan wings, Ginger Beer and Cafe sin Leche; real protein descriptions; which design he chooses (then remove the switch). Confirm combo drink eligibility (“from +$2”) in Square.
+- Hours Tue–Fri 11–3, closed Mon/Sat/Sun, preorders for pickup and delivery — from Pearl Island's current site; verify with Sober.
 
 ## Design-first path
 

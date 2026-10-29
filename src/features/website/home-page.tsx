@@ -21,22 +21,6 @@ export function HomePage() {
       <SiteHeader />
       <ScrollMotion />
       <main>
-        <section className={styles.hero} data-hero>
-          <div className={styles.heroPhoto} data-hero-photo>
-            <Image
-              src="/images/hero-beach.jpg"
-              alt="Palm-lined beach and turquoise water seen from above."
-              fill
-              sizes="100vw"
-              preload
-              className={styles.heroImage}
-            />
-          </div>
-          <div className={styles.heroFade} data-hero-fade aria-hidden="true" />
-          <svg className={styles.heroWave} viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-            <path d={wavePath} />
-          </svg>
-        </section>
         <section className={styles.welcome}>
           <div className={styles.welcomeContent} data-scroll-reveal data-reveal-delay="0">
             <h1>Welcome to Pearl Island</h1>
@@ -47,15 +31,36 @@ export function HomePage() {
             <div className={styles.welcomePhoto}>
               <div className={styles.welcomeZoomFrame}>
                 <Image
-                  src="/images/welcome-greens.jpg"
-                  alt="Hand sprinkling seasoning over a bowl of fresh greens in a sunlit kitchen"
+                  src="/images/welcome-kitchen.jpg"
+                  alt="A Pearl Island cook slicing seasoned chicken on a cutting board in the kitchen"
                   fill
                   sizes="(min-width: 900px) 46vw, 100vw"
+                  preload
                   className={styles.welcomeImage}
                 />
               </div>
             </div>
           </div>
+        </section>
+        <section className={styles.hero} data-hero>
+          <svg className={styles.heroWaveTop} viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d={wavePath} />
+          </svg>
+          <div className={styles.heroPhoto} data-hero-photo>
+            <Image
+              src="/images/hero-beach.jpg"
+              alt="Palm-lined beach and turquoise water seen from above."
+              fill
+              sizes="100vw"
+              className={styles.heroImage}
+            />
+          </div>
+          <div className={styles.heroEdgeTop} aria-hidden="true" />
+          <div className={styles.heroEdgeBottom} aria-hidden="true" />
+          <div className={styles.heroFade} data-hero-fade aria-hidden="true" />
+          <svg className={styles.heroWave} viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d={wavePath} />
+          </svg>
         </section>
         <DestinationCards />
         <section className={styles.newsletter} aria-labelledby="newsletter-heading">

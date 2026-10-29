@@ -29,6 +29,13 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - Supplied external URLs were taken from Pearl Island's live website (Oct 28, 2026); verify them with Sober before launch. The blank `/menu` route reuses the `#e8f6fa` Welcome-band token; Community remains in the phone menu and is removed from the footer list.
 - WEB-019 v5 uses a white 56px category bar: 14px Arial text, 28px gaps and one blue underline transitioning for 320ms; the hero ends with a clean edge.
 - WEB-019 v6 menu images are transparent PNG cutouts on transparent stages, with no blend mode or visible surface behind them.
+- WEB-019 v7 sets item names and prices on two left-aligned lines below the image, with 18px image-to-name spacing and 6px name-to-price spacing.
+- WEB-021 places the shore between Welcome and the cards, with a Welcome-colored wave at its top and a white wave at its bottom.
+- Shore photo drift now follows the shore's position relative to the viewport center, within ±200px.
+- Menu items fade in and rise 6px over 420ms with a 35ms stagger (maximum 280ms); the category container only fades.
+- The shore has 150px soft fades beneath both crisp waves: Welcome color above and white below (100px on phones).
+- The item modal uses a minimal 24px × icon in an accessible 40px close button; its image and ordering layout stay intact.
+- The new Visit & pickup section sits above the unchanged footer on #F7F2EB, with business details beside a Carlton Road map.
 - Image dimensions come from each PNG; PLATTER, SIDE_TRAY, CUP, TALL and WIDE_TRAY classes set the desktop, tablet, phone and modal size limits.
 - Every item image shares the same soft drop shadow, and TALL images also have a contact shadow beneath them.
 - Shared category headers use Georgia 36px desktop / 28px phone with 48px / 32px top padding and 32px spacing before content; the wing eyebrow occupies reserved space.
@@ -54,3 +61,10 @@ Selected motion: normal cursor, center pivot, maximum 4.5 degrees per axis, lift
 ## Inputs and review discipline
 
 Production video, approved Pearl Island photos to replace the current placeholders, original name lettering, verified business details and destination URLs remain open. The WEB-010 brief approves a temporary Georgia wordmark, exact temporary Welcome copy, phone layout and inactive controls for review. Do not import another business's assets or the rejected implementation. Chat carousel controls, overlay arrows and annotation UI are not part of the page. Diego's visual acceptance is still required; build success alone does not complete review.
+
+## Palette
+
+- `--cyan: #00A1CA` — legacy only; no new UI. `--blue: #206B8D` — brand headings, links, prices and active states.
+- `--ink: #1C1C1C` — near-black text, actions and footer. `--body: #383838` — body text. `--white: #FFFFFF` — white surfaces and text.
+- `--welcome-band: #E8F6FA` — Welcome and light tint. `--warm: #F7F2EB` — Visit & pickup. `--newsletter: #F4F4F4` — newsletter.
+- No new hex colors; use tokens. `#00A1CA` is legacy only.

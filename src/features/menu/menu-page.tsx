@@ -90,12 +90,12 @@ export function MenuPage() {
         </div>}
       </div>
     </section>
-    <dialog ref={dialogRef} className={styles.itemDialog} aria-labelledby="item-dialog-title" onClick={event => { if (event.target === dialogRef.current) dialogRef.current?.close(); }} onKeyDown={trapDialogTab} onClose={closeItem}>{selectedItem && <><button type="button" className={styles.dialogClose} onClick={() => dialogRef.current?.close()}>Close</button><div className={styles.dialogLayout}><MenuImage item={selectedItem} kind="dialog" /><div className={styles.dialogText}><h2 id="item-dialog-title">{selectedItem.name}</h2><p className={styles.dialogPrice}>{selectedItem.price}</p><p className={styles.dialogDescription}>{selectedItem.description}</p><OrderLink solid modal /></div></div></>}</dialog>
+    <dialog ref={dialogRef} className={styles.itemDialog} aria-labelledby="item-dialog-title" onClick={event => { if (event.target === dialogRef.current) dialogRef.current?.close(); }} onKeyDown={trapDialogTab} onClose={closeItem}>{selectedItem && <><button type="button" aria-label="Close" className={styles.dialogClose} onClick={() => dialogRef.current?.close()}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" /></svg></button><div className={styles.dialogLayout}><MenuImage item={selectedItem} kind="dialog" /><div className={styles.dialogText}><h2 id="item-dialog-title">{selectedItem.name}</h2><p className={styles.dialogPrice}>{selectedItem.price}</p><p className={styles.dialogDescription}>{selectedItem.description}</p><OrderLink solid modal /></div></div></>}</dialog>
   </div>;
 }
 
 function ItemGrid({ items, onOpen }: { items: readonly MenuEntry[]; onOpen: (item: MenuEntry, event: MouseEvent<HTMLButtonElement>) => void }) {
-  return <div className={styles.itemGrid}>{items.map((item, i) => <button key={item.id} className={styles.menuItem} style={{ "--item-delay": `${Math.min(i * 30, 300)}ms` } as CSSProperties} type="button" onClick={event => onOpen(item, event)} aria-label={`${item.name}, ${item.price}`}><MenuImage item={item} preload={i < 3} /><span className={styles.itemText}><span className={styles.itemName}>{item.name}</span><span className={styles.itemPrice}>{item.price}</span></span></button>)}</div>;
+  return <div className={styles.itemGrid}>{items.map((item, i) => <button key={item.id} className={styles.menuItem} style={{ "--item-delay": `${Math.min(i * 35, 280)}ms` } as CSSProperties} type="button" onClick={event => onOpen(item, event)} aria-label={`${item.name}, ${item.price}`}><MenuImage item={item} preload={i < 3} /><span className={styles.itemText}><span className={styles.itemName}>{item.name}</span><span className={styles.itemPrice}>{item.price}</span></span></button>)}</div>;
 }
 
 function WingWednesday() {

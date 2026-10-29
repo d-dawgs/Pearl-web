@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "src/features/website/site-header.module.css"
+        ],
+        "createdAt": "2026-10-27T17:42:18.132Z",
+        "reason": "Diego approved WEB-010-HOME v1: one absolutely positioned underline adapts to each navigation label width over 260ms; it does not reflow sibling navigation items"
+      },
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-10-29T01:06:20.644Z",
+        "reason": "Diego's WEB-019 specification explicitly requires Arial for the Tropical Poster headline and menu controls; preserving the approved typography."
+      }
+    ]
+  }
+}

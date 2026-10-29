@@ -74,7 +74,9 @@ export function ScrollMotion() {
       if (!hero || !heroPhoto || reducedMotion.matches) return;
       const bounds = hero.getBoundingClientRect();
       if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
-        heroPhoto.style.setProperty("--hero-drift-y", `${Math.max(0, window.scrollY) * 0.3}px`);
+        const offset = (window.innerHeight / 2) - (bounds.top + bounds.height / 2);
+        const drift = Math.max(-200, Math.min(200, offset * 0.2));
+        heroPhoto.style.setProperty("--hero-drift-y", `${drift}px`);
       }
     };
 

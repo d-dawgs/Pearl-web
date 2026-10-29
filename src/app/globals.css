@@ -1,9 +1,17 @@
+/* Pearl Island palette — approved by Diego Oct 29, 2026. Use these tokens; do not add new hex colors. */
 :root {
   --cyan: #00a1ca;
   --blue: #206b8d;
   --white: #ffffff;
   --body: #383838;
   --ink: #1c1c1c;
+  --welcome-band: #e8f6fa;
+  --warm: #f7f2eb;
+  --newsletter: #f4f4f4;
+  --blue-rgb: 32 107 141;
+  --ink-rgb: 28 28 28;
+  --body-rgb: 56 56 56;
+  --white-rgb: 255 255 255;
 }
 
 *,

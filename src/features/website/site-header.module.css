@@ -34,7 +34,7 @@
 
 .header.pinned {
   background: var(--white);
-  box-shadow: 0 6px 18px rgb(28 28 28 / .12), 0 1px 0 rgb(28 28 28 / .06);
+  box-shadow: 0 6px 18px rgb(var(--ink-rgb) / .12), 0 1px 0 rgb(var(--ink-rgb) / .06);
   opacity: 1;
   transform: translateY(0);
 }

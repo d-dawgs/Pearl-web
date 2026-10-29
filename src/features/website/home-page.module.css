@@ -1,5 +1,3 @@
-:global(:root) { --welcome-band: #e8f6fa; }
-
 .hero {
   position: relative;
   overflow: hidden;
@@ -13,6 +11,36 @@
   transform: translate3d(0, var(--hero-drift-y, 0px), 0);
 }
 .heroImage { object-fit: cover; object-position: 42% 28%; }
+.heroEdgeTop {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 150px;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+    var(--welcome-band) 0%,
+    rgb(232 246 250 / .78) 22%,
+    rgb(232 246 250 / .42) 48%,
+    rgb(232 246 250 / .14) 74%,
+    rgb(232 246 250 / 0) 100%);
+}
+.heroEdgeBottom {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 150px;
+  pointer-events: none;
+  background: linear-gradient(to top,
+    var(--white) 0%,
+    rgb(255 255 255 / .78) 22%,
+    rgb(255 255 255 / .42) 48%,
+    rgb(255 255 255 / .14) 74%,
+    rgb(255 255 255 / 0) 100%);
+}
 .heroFade {
   position: absolute;
   z-index: 1;
@@ -20,7 +48,7 @@
   bottom: 0;
   left: 0;
   height: min(356px, 100%);
-  background: var(--welcome-band);
+  background: var(--white);
   opacity: .08;
   -webkit-mask-image: linear-gradient(to bottom,
     transparent 0%,
@@ -48,16 +76,29 @@
     #000 100%);
   pointer-events: none;
 }
+.heroWaveTop {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  margin-top: -1px;
+  fill: var(--welcome-band);
+  transform: scaleY(-1);
+  pointer-events: none;
+}
 .heroWave {
   position: absolute;
   z-index: 2;
   right: 0;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 100%;
   height: 120px;
   overflow: visible;
-  fill: var(--welcome-band);
+  fill: var(--white);
   pointer-events: none;
 }
 .welcome {
@@ -106,7 +147,7 @@
 }
 :global(html[data-motion-ready="pending"]) .welcomePhotoReveal[data-scroll-reveal]:not([data-revealed="true"]) .welcomeZoomFrame,
 :global(html[data-motion-ready="true"]) .welcomePhotoReveal[data-scroll-reveal]:not([data-revealed="true"]) .welcomeZoomFrame { transform: scale(1.08); }
-.welcomeImage { object-fit: cover; object-position: 50% 40%; filter: grayscale(1) contrast(1.05); }
+.welcomeImage { object-fit: cover; object-position: 42% 55%; filter: grayscale(1) contrast(1.08); }
 .welcome h1, .newsletter h2 { margin: 0; }
 .welcome h1 {
   color: var(--blue);
@@ -159,7 +200,7 @@
   align-items: center;
   justify-content: center;
   padding: 95.04px 3vw;
-  background: #f4f4f4;
+  background: var(--newsletter);
   color: var(--body);
   text-align: center;
 }
@@ -249,4 +290,5 @@
 
 @media (max-width: 599px) {
   .heroPhoto { inset: -220px 0; }
+  .heroEdgeTop, .heroEdgeBottom { height: 100px; }
 }
