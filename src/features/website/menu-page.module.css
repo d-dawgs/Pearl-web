@@ -1,9 +1,163 @@
 .menuPage {
-  width: 100%;
-  min-height: max(60vh, calc(100svh - 90px));
-  background: var(--welcome-band, #e8f6fa);
+  --blue: #206b8d;
+  --ink: #1c1c1c;
+  --body: #383838;
+  --band: #e8f6fa;
+  --rule: rgb(32 107 141 / .18);
+  color: var(--body);
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-@media (max-width: 1099px) {
-  .menuPage { min-height: max(60vh, calc(100svh - 88px - env(safe-area-inset-top))); }
+.categoryTabs button:focus-visible,.menuItem:focus-visible,.orderNow:focus-visible,.dialogClose:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; position: relative; z-index: 2; }
+.hero { position: relative; overflow: hidden; }
+.heroCopy { position: relative; z-index: 1; }
+.eyebrow { margin: 0; color: var(--blue); font: 700 10px/1.4 Arial, Helvetica, sans-serif; letter-spacing: 2px; }
+.hero h1 { margin: 10px 0 12px; }
+.subtitle { margin: 0; font: 400 14px/1.6 Arial, Helvetica, sans-serif; }
+.poster .hero { min-height: 250px; padding: 46px 5% 39px; background: var(--blue); text-align: left; }
+.poster .heroCopy { width: min(100%, 700px); }
+.poster .hero h1 { color: #fff; font: 700 64px/.98 Georgia, "Times New Roman", serif; letter-spacing: -2px; }
+.poster .eyebrow { color: #fff; }
+.poster .subtitle { max-width: 510px; color: rgb(255 255 255 / .85); }
+.heroRings { position: absolute; top: -164px; right: -66px; width: 290px; height: 290px; border: 1px solid rgb(255 255 255 / .18); border-radius: 50%; box-shadow: 0 0 0 34px rgb(255 255 255 / .07), 0 0 0 68px rgb(255 255 255 / .07); pointer-events: none; }
+.categoryBand { padding: 10px 5% 13px; background: var(--band); }
+.categoryTabs { display: flex; width: 100%; max-width: 1200px; margin: 0 auto; gap: 8px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.categoryTabs button { min-height: 44px; flex: 0 0 auto; padding: 0 14px; border: 1px solid var(--rule); border-radius: 5px; background: #fff; color: var(--blue); font: 700 11px/1.2 Arial, Helvetica, sans-serif; white-space: nowrap; cursor: pointer; }
+.categoryTabs button[aria-selected="true"] { border-color: var(--blue); background: var(--blue); color: #fff; }
+.categoryContent { background: #fff; }
+.itemSection { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 5% 56px; }
+.itemSection > h2,.wingIntro h2 { margin: 0; color: var(--blue); font: 700 30px/1.15 Georgia, "Times New Roman", serif; }
+.sectionIntro { margin: 5px 0 17px; color: var(--body); font: 400 13px/1.5 Arial, Helvetica, sans-serif; }
+.itemGrid { display: grid; width: 100%; }
+.menuItem { min-width: 0; color: inherit; cursor: pointer; }
+.galleryImage,.dialogImage { display: block; width: auto; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+.galleryImage { max-width: min(260px,100%); max-height: 240px; }
+.dialogImage { max-width: 100%; max-height: 420px; }
+.itemText { display: grid; min-width: 0; grid-template-columns: minmax(0,1fr) auto; align-items: baseline; column-gap: 10px; }
+.itemName { min-width: 0; color: var(--blue); font: 400 18px/1.2 Georgia, "Times New Roman", serif; text-align: left; }
+.itemPrice { color: var(--blue); font: 700 12px/1.3 Arial, Helvetica, sans-serif; text-align: right; white-space: nowrap; }
+.monogram { display: grid; width: 100%; height: 100%; place-items: center; background: var(--band); color: rgb(32 107 141 / .55); font: 700 28px/1 Georgia, "Times New Roman", serif; }
+.posterGrid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 26px 16px; margin-top: 20px; }
+.posterGrid .menuItem { display: flex; width: 100%; min-width: 0; flex-direction: column; align-items: center; padding: 0; border: 0; background: #fff; text-align: center; }
+.galleryImageSlot { display: grid; width: 260px; height: 310px; max-width: 100%; place-items: center; background: radial-gradient(ellipse at center, #e8f6fa 0%, rgb(232 246 250 / .65) 54%, #fff 78%); }
+.posterGrid .itemText { width: 100%; margin-top: 9px; }
+.posterGrid .itemName { text-align: left; }
+.posterGrid .itemPrice { font-size: 12px; }
+.groupTitle { margin: 25px 0 8px; color: var(--blue); font: 700 20px/1.2 Georgia, "Times New Roman", serif; }
+.textCard { width: min(100%,450px); margin: 18px 0 22px; padding: 18px; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+.textCard h3 { margin: 0 0 6px; color: var(--blue); font: 700 20px/1.2 Georgia, "Times New Roman", serif; }
+.textCard p,.textCard span { display: block; margin: 0; color: var(--body); font: 400 14px/1.5 Arial, Helvetica, sans-serif; }
+.orderNow { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; padding: 0 20px; border: 1px solid var(--ink); border-radius: 5px; background: transparent; color: var(--ink); font: 700 11px/1 Arial, Helvetica, sans-serif; letter-spacing: .04em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: background-color 160ms ease,color 160ms ease,border-color 160ms ease; }
+@media (hover:hover) { .orderNow:hover { background: var(--ink); color: #fff; border-color: var(--ink); } }
+.orderNow:focus-visible { background: var(--ink); color: #fff; border-color: var(--ink); }
+.orderNowSolid { min-height: 48px; padding-inline: 22px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 14px; letter-spacing: .08em; }
+@media (hover:hover) { .orderNowSolid:hover { background: var(--blue); border-color: var(--blue); } }
+.orderNowSolid:focus-visible { background: var(--blue); border-color: var(--blue); }
+.platterSection { padding: 27px 5% 31px; background: var(--band); }
+.platterInner { width: 100%; max-width: 1200px; margin: 0 auto; }
+.platterInner > h2 { margin: 0; color: var(--blue); font: 700 32px/1.15 Georgia, "Times New Roman", serif; }
+.platterIntro { margin: 7px 0 19px; color: var(--body); font: 400 15px/1.5 Arial, Helvetica, sans-serif; }
+.platterGrid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-auto-rows: 1fr; align-items: stretch; gap: 14px; }
+.platterCard { display: flex; min-width: 0; flex-direction: column; padding: 20px; border: 1px solid var(--rule); border-radius: 12px; background: #fff; }
+.platterCard h3 { margin: 0; color: var(--ink); font: 700 19px/1.25 Georgia, "Times New Roman", serif; }
+.platterDescription { min-height: 2.7em; margin: 5px 0 9px; color: rgb(56 56 56 / .75); font: 400 13px/1.35 Arial, Helvetica, sans-serif; }
+.platterPrice { margin: 0 0 12px; color: var(--blue); font: 700 30px/1 Georgia, "Times New Roman", serif; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.comboRow { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 11px; border-top: 1px solid var(--rule); color: var(--body); }
+.comboCopy { display: flex; flex-direction: column; gap: 3px; font: 700 13px/1.2 Arial, Helvetica, sans-serif; }
+.comboCopy strong { white-space: nowrap; }
+.comboCopy i { color: rgb(56 56 56 / .75); font: italic 12px/1.2 Arial, Helvetica, sans-serif; }
+.comboPrice { flex: 0 0 auto; color: var(--blue); font: 700 13px/1.2 Arial, Helvetica, sans-serif; white-space: nowrap; }
+.orderingRow { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 24px; }
+.orderingRow > p { max-width: 760px; margin: 0; color: rgb(56 56 56 / .75); font: 400 13px/1.5 Arial, Helvetica, sans-serif; }
+.itemDialog { position: fixed; inset: 0; display: block; width: min(880px,calc(100vw - 32px)); max-width: calc(100vw - 32px); max-height: min(92svh,900px); margin: auto; padding: 40px; overflow: auto; border: 0; border-radius: 20px; background: #fff; color: var(--body); box-shadow: 0 24px 80px rgb(28 28 28 / .2); }
+.itemDialog:not([open]) { display: none; }
+.itemDialog::backdrop { background: rgb(28 28 28 / .55); }
+.dialogClose { position: sticky; z-index: 3; top: -20px; display: block; width: max-content; min-height: 32px; margin: -20px -20px -12px auto; padding: 3px 6px; border: 0; background: #fff; color: var(--body); font: 400 13px/1.2 Arial, Helvetica, sans-serif; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; cursor: pointer; }
+.dialogClose:hover { text-decoration-color: currentColor; }
+.dialogLayout { display: grid; grid-template-columns: minmax(0,45fr) minmax(0,55fr); align-items: center; gap: 30px; }
+.dialogImageSlot { display: grid; width: 100%; height: min(420px,60vh); min-width: 0; place-items: center; background: #fff; }
+.dialogText { min-width: 0; }
+.dialogText h2 { margin: 0 0 8px; color: var(--blue); font: 600 38px/1.08 Georgia, "Times New Roman", serif; overflow-wrap: anywhere; }
+.dialogText .dialogPrice { margin: 0; color: var(--ink); font: 700 19px/1.35 Arial, Helvetica, sans-serif; }
+.dialogDescription { max-width: 42ch; margin: 20px 0 28px; color: var(--body); font: 400 16px/1.6 Arial, Helvetica, sans-serif; }
+.dialogOrder { width: 100%; min-height: 55px; }
+.wingSection { max-width: 1200px; }
+.wingIntro { max-width: 720px; margin: 0 0 24px; }
+.wingEyebrow { margin: 0 0 8px; color: var(--blue); font: 700 11px/1.3 Arial, Helvetica, sans-serif; letter-spacing: 1.5px; }
+.wingIntro h2 { margin: 0 0 10px; font-size: 40px; }
+.wingIntro > p:last-child { margin: 0; color: var(--body); font: 400 16px/1.6 Arial, Helvetica, sans-serif; }
+.wingGallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+.wingGalleryItem { min-width: 0; }
+.wingPhotoSlot { display: grid; width: 100%; height: 290px; place-items: center; background: #fff; }
+.wingPhoto { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: 8px; object-fit: contain; mix-blend-mode: multiply; }
+.wingGalleryItem h3 { margin: 12px 0 4px; color: var(--blue); font: 400 22px/1.2 Georgia, "Times New Roman", serif; }
+.wingGalleryItem p { margin: 0; color: rgb(56 56 56 / .75); font: 400 14px/1.5 Arial, Helvetica, sans-serif; }
+.wingServing { margin-top: 30px; }
+.wingServing h3,.wingSauce h3 { margin: 0; color: var(--ink); font: 700 17px/1.3 Arial, Helvetica, sans-serif; }
+.wingServingIntro { margin: 5px 0 13px; color: rgb(56 56 56 / .75); font: 400 14px/1.5 Arial, Helvetica, sans-serif; }
+.wingServingGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.wingServingCard { padding: 18px; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
+.wingServingTitle { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.wingServingTitle h4 { margin: 0; color: var(--ink); font: 700 16px/1.25 Arial, Helvetica, sans-serif; }
+.wingServingTitle strong { color: var(--blue); font: 700 22px/1 Georgia, "Times New Roman", serif; white-space: nowrap; }
+.wingServingCard p { margin: 8px 0 0; color: var(--body); font: 400 14px/1.5 Arial, Helvetica, sans-serif; }
+.wingSauce { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.wingSauce p { margin: 7px 0 0; color: var(--body); font: 400 14px/1.6 Arial, Helvetica, sans-serif; }
+.wingOrderingRow { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--rule); }
+@media (max-width: 899px) {
+  .platterGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 759px) {
+  .itemDialog { width: calc(100vw - 24px); max-width: calc(100vw - 24px); max-height: calc(100svh - 24px); padding: 22px; }
+  .dialogClose { top: -12px; margin: -12px -12px 0 auto; }
+  .dialogLayout { grid-template-columns: 1fr; gap: 16px; }
+  .dialogImageSlot { height: min(42vh,360px); }
+  .dialogImage { max-height: 42vh; }
+  .dialogText h2 { font-size: 28px; }
+  .dialogDescription { margin: 14px 0 20px; }
+}
+@media (max-width: 600px) {
+  .categoryTabs { gap: 7px; }
+  .categoryTabs button { padding-inline: 12px; }
+  .poster .hero { min-height: 220px; padding: 36px 5% 32px; }
+  .poster .hero h1 { margin: 9px 0 11px; font-size: 40px; letter-spacing: -1.4px; }
+  .heroRings { top: -107px; right: -78px; width: 190px; height: 190px; box-shadow: 0 0 0 24px rgb(255 255 255 / .07), 0 0 0 48px rgb(255 255 255 / .07); }
+  .itemSection { padding: 32px 5% 42px; }
+  .itemSection > h2 { font-size: 26px; }
+  .itemName { font-size: 16px; }
+  .itemPrice { font-size: 11px; }
+  .posterGrid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 10px; }
+  .galleryImageSlot { width: 45vw; height: 54vw; max-height: 310px; }
+  .galleryImage { max-width: 45vw; max-height: 54vw; }
+  .posterGrid .itemText { column-gap: 5px; }
+  .posterGrid .itemName { font-size: 15px; }
+  .posterGrid .itemPrice { font-size: 10px; }
+  .platterSection { padding: 24px 5% 28px; }
+  .platterInner > h2 { font-size: 29px; }
+  .platterIntro { font-size: 13px; }
+  .platterGrid { gap: 10px; }
+  .platterCard { padding: 14px; }
+  .platterCard h3 { font-size: 17px; }
+  .platterDescription { font-size: 12px; }
+  .platterPrice { font-size: 24px; }
+  .comboRow { gap: 4px; }
+  .comboCopy { font-size: 11px; }
+  .comboCopy i { font-size: 10px; }
+  .comboPrice { font-size: 11px; }
+  .orderingRow { display: grid; gap: 12px; }
+  .orderingRow .orderNow { width: 100%; }
+  .wingIntro h2 { font-size: 28px; }
+  .wingIntro > p:last-child { font-size: 15px; }
+  .wingGallery { grid-template-columns: 1fr; gap: 20px; }
+  .wingPhotoSlot { height: min(62vw,300px); }
+  .wingServingGrid { grid-template-columns: 1fr; gap: 10px; }
+  .wingServingCard { padding: 15px; }
+}
+@media (max-width: 359px) {
+  .platterCard { padding: 10px; }
+  .comboRow { gap: 3px; }
+  .comboCopy,.comboCopy i,.comboPrice { font-size: 9px; }
+  .posterGrid .itemText { column-gap: 3px; }
+  .posterGrid .itemName { font-size: 14px; }
+  .posterGrid .itemPrice { font-size: 9px; }
 }

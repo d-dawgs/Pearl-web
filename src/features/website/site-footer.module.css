@@ -29,8 +29,8 @@
   min-width: 0;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0;
-  margin-top: 40px;
+  gap: 12px;
+  margin-top: 0;
 }
 
 .pages button, .pages a {
@@ -49,8 +49,8 @@
   grid-row: 2;
   align-self: center;
   display: flex;
-  width: min(100%, 330.2px);
-  height: 109.3px;
+  width: min(100%, 220px);
+  height: 64px;
   align-items: center;
   justify-content: center;
   margin-top: 0;
@@ -59,8 +59,8 @@
   border-radius: 6.4px;
   background: transparent !important;
   color: var(--white) !important;
-  font: 500 16px/normal var(--footer-text-font, Georgia);
-  letter-spacing: 0.32px;
+  font: 500 17px/normal Georgia, "Times New Roman", serif;
+  letter-spacing: normal;
   text-align: center !important;
   white-space: nowrap;
   text-decoration: none;
@@ -179,14 +179,14 @@
     padding: 27.852px 6vw;
   }
 
-  .pages { margin-top: 0; padding-bottom: 70px; }
+  .pages { margin-top: 0; padding-bottom: 17px; }
   .pages button, .pages a { min-height: 25.86px; font-size: 22.0768px; line-height: 1.1712; }
   .contactBottomRow { flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 5px; }
   .socials { min-height: 44px; }
   .orderButton {
-    width: max-content;
-    min-width: 121.8px;
-    height: 59px;
+    width: 180px;
+    min-width: 0;
+    height: 52px;
     margin-top: 0;
     padding-inline: 24px;
   }

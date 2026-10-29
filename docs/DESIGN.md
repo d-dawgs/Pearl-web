@@ -27,6 +27,17 @@ WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 
 - WEB-018 aligns the desktop footer Order Now box and Contact-column icon/action group on one centered row, keeping the existing three-column layout and stacked phone layout.
 - Reveals reset after leaving the viewport and play again on re-entry. Home and the wordmark dispatch `pearl:replay-intro` at `/`, resetting reveals and hero drift before the opening plays again; reduced motion jumps to the top without animation.
 - Supplied external URLs were taken from Pearl Island's live website (Oct 28, 2026); verify them with Sober before launch. The blank `/menu` route reuses the `#e8f6fa` Welcome-band token; Community remains in the phone menu and is removed from the footer list.
+- WEB-019 v5 uses a white 56px category bar: 14px Arial text, 28px gaps and one blue underline transitioning for 320ms; the hero ends with a clean edge.
+- Shared category headers use Georgia 36px desktop / 28px phone with 48px / 32px top padding and 32px spacing before content; the wing eyebrow occupies reserved space.
+- Menu content follows an 8px rhythm, white image surfaces, 18px Georgia names and 13px Arial prices; clean photos are contained, centered and capped below natural size even on hover.
+- Platter Options retains its pale cyan band, with 15px Arial names, 32px Georgia prices, a hairline divider and equal-height cards; subsection headings share a 24px Georgia style.
+- Category bodies fade out for 150ms and enter over 300ms from 8px, with 30ms item staggering capped at 300ms; hover is 1.03× / 400ms, cards lift 2px, and below-fold subsections reveal once from 12px. Reduced motion disables every effect.
+- WEB-019 v4 uses the single Tropical Poster menu design: a `#206B8D` hero, shared category tabs, contained item gallery and editorial split modal; the temporary design switch is removed.
+- Item photos use natural dimensions, contain fit and multiply blending; no image is enlarged beyond its source pixels, and HD protein and kale photos replace their earlier crops.
+- The modal is a minimal editorial split: contained image at left, Georgia title and price/details at right, full-width Order Now, and a reachable Close control; the combo line is removed.
+- Wing Wednesdays now leads with its two-photo gallery, followed by non-clickable serving and sauce options, then the Square ordering action.
+- Remaining side, drink, product and wing photos are lower-resolution demo crops until HD versions arrive; demo images will be replaced with Pearl Island originals later.
+- Footer links align at the top of the Location and Contact headings with 12px rhythm; footer Order Now is 220×64px desktop and 180×52px phone.
 - Website owns its entire page shell. Do not reproduce the old software navigation, dark surrounding frame or boxed body workaround.
 
 ## Selected inputs
