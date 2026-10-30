@@ -1,6 +1,6 @@
 # Website design direction
 
-WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 2026. The approved homepage brief supplies the consolidated desktop/phone choices for this first module. The remaining public pages still need their own design and approval. See [the implementation result](website/WEB-010-HOME-v1-RESULT.md).
+WEB-010-HOME v1 is implemented and **Ready for Diego review** as of October 27, 2026. The approved homepage brief supplies the consolidated desktop/phone choices for this first module. The remaining public pages still need their own design and approval. See (archived outside the repo).
 
 ## Structure and identity
 

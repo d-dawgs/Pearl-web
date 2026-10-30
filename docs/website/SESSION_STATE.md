@@ -25,6 +25,7 @@ WEB-019 v7 — Classic Editorial protein cards, modal × close, Visit & pickup s
 WEB-021 v1 — Homepage order: Welcome, shore, cards — Ready for Diego review.
 
 WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review.
+WEB-024 v1 — Codebase cleanup (no visual changes) — Ready for Diego review.
 
 Oct 29: This is the presentation version to show Sober for review. It is not Diego's final acceptance or a launch approval. The git-ignored Welcome greens, Menu card and Catering card placeholder photos remain local-only until their source and license are resolved.
 

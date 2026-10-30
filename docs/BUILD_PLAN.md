@@ -5,7 +5,7 @@ Status: WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready 
 ## Current and next
 
 - Last accepted: independent blank foundation, technically checked October 26.
-- Current: WEB-016-CARDS v1 (Giant type) replaces the centered small card title with large bottom-left type, a visible photo fade, synchronized drift and title float; it preserves the selected photos, card material and tilt motion. Diego has not accepted the homepage modules yet; see [homepage result evidence](website/WEB-010-HOME-v1-RESULT.md).
+- Current: WEB-016-CARDS v1 (Giant type) replaces the centered small card title with large bottom-left type, a visible photo fade, synchronized drift and title float; it preserves the selected photos, card material and tilt motion. Diego has not accepted the homepage modules yet; see (archived outside the repo).
 - WEB-017-HERO-MOTION v1 adds a static wave and 8% fade in the existing Welcome band color, one-time staggered section reveals, 1.08-to-1 photo zoom, and 0.3× hero drift. Footer stays static; reduced motion disables the effects.
 - WEB-018 v1 wires supplied Pearl Island live-site URLs (Oct 28, 2026; verify with Sober before launch), adds a blank Menu route, removes Community from the footer only, aligns the footer's desktop bottom row, and replays reveals on re-entry and Home/wordmark clicks.
 - WEB-019 v5 refines the Tropical Poster menu with 43 clean white-background demo photos, a sliding text category bar, consistent category headers, an 8px spacing rhythm, refined Platter Options and reduced-motion-safe category/hover/reveal animation.
@@ -14,6 +14,7 @@ Status: WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready 
 - WEB-021 v1 — Homepage order: Welcome, shore, cards — Ready for Diego review.
 - WEB-022 v1 — Palette tokens + color audit + impeccable final audit — Ready for Diego review.
 - WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review.
+- WEB-024 v1 — Codebase cleanup (no visual changes) — Ready for Diego review.
 - Oct 29 presentation checkpoint: show this version to Sober for review; record his feedback before acceptance or launch. Git-ignored Home placeholder photos remain local-only pending source/license clearance.
 
 - WEB-019 v4 removes the review switch and keeps the Tropical Poster design, replaces 29 photos with supplied HD versions, and tightens the left footer column. Remaining side items use lower-resolution crops; Ginger Beer – Non-Alcoholic and Cafe sin Leche stay monogram placeholders. All menu photos are generated demos to replace with Pearl Island originals later.

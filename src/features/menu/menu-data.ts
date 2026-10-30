@@ -9,16 +9,12 @@ export type MenuEntry = {
   naturalWidth?: number;
   naturalHeight?: number;
   shape?: MenuImageShape;
-  combo?: boolean;
-  surcharge?: number;
 };
 
-export type MenuImageShape = "PLATTER" | "SIDE_TRAY" | "CUP" | "TALL" | "WIDE_TRAY";
+type MenuImageShape = "PLATTER" | "SIDE_TRAY" | "CUP" | "TALL" | "WIDE_TRAY";
 
 export const menuCopy = {
   hero: { eyebrow: "CARIBBEAN FLAVORS · THE MENU", headline: "Island Flavor.", subtitle: "A little heat, a little tang, and a whole lot of flavor." },
-  proteinHeading: "Protein Selections",
-  proteinIntro: "Nine protein choices available with the platter menu.",
   platterHeading: "Platter Options",
   platterIntro: "All platters include rice with pigeon peas, kale salad, fried plantains, aioli and pikliz.",
   platterDisclaimer: "Base prices shown. Certain proteins and drink choices cost extra. Final selections and totals appear in Square.",
@@ -41,7 +37,6 @@ export const menuCopy = {
   } satisfies Record<MenuCategoryId, string>,
   sideGroups: { cafe: "Cafe Sides", addOns: "Add-ons" },
   wingEyebrow: "WING WEDNESDAYS",
-  wingTitle: "PI x MK Halal Wings",
   wingIntro: "A collaboration between Pearl Island and Mint Kitchen, combining Caribbean and South Indian flavors. Oven-roasted chicken wings and tempura-fried cauliflower wings.",
   wingServingHeading: "Serving Options",
   wingServingIntro: "Both wing styles are available as a platter or basket.",
@@ -57,7 +52,6 @@ const dimensions: Record<string, [number, number]> = {
   "curry-tofu": [1035, 1116],
   "drink-blue-ridge-bucha": [541, 1063],
   "drink-hibiscus": [1091, 1062],
-  "drink-koto-ginger-beer-passion": [601, 1110],
   "drink-koto-ginger-beer": [532, 1018],
   "drink-limeade": [1090, 1080],
   "drink-lychee-lemonade": [995, 980],
@@ -100,7 +94,7 @@ const imageShapes: Record<string, MenuImageShape> = {
   "jerk-chicken": "PLATTER", "roasted-pork": "PLATTER", "curry-chicken": "PLATTER", "sous-poulet": "PLATTER", "curry-tofu": "PLATTER", "jerk-tofu": "PLATTER", "creole-beans": "PLATTER", "sous-shu": "PLATTER", "chickpea-stew": "PLATTER",
   "side-curry-chicken": "SIDE_TRAY", "side-jerk-chicken": "SIDE_TRAY", "side-pulled-pork": "SIDE_TRAY", "side-sous-poulet": "SIDE_TRAY", "side-creole-beans": "SIDE_TRAY", "side-curry-tofu": "SIDE_TRAY", "side-jerk-tofu": "SIDE_TRAY", "side-sous-shu": "SIDE_TRAY", "side-rice-pigeon-peas": "SIDE_TRAY", "side-plantain-platter-6": "SIDE_TRAY", "side-kale-salad": "SIDE_TRAY", "side-fried-plantains-3": "SIDE_TRAY",
   "side-extra-aioli": "CUP", "side-extra-aioli-vegan": "CUP", "side-extra-pikliz": "CUP", "drink-tropical-lemonade": "CUP", "drink-limeade": "CUP", "drink-hibiscus": "CUP", "drink-tamarind": "CUP", "drink-lychee-lemonade": "CUP", "drink-ting": "CUP",
-  "drink-malta": "TALL", "drink-koto-ginger-beer": "TALL", "drink-koto-ginger-beer-passion": "TALL", "drink-blue-ridge-bucha": "TALL", "drink-pearl-island-water": "TALL", "product-aioli-bottle": "TALL", "product-aioli-vegan-bottle": "TALL", "product-shallot-vinaigrette": "TALL", "product-pikliz-jar": "TALL", "product-pikliz-12oz": "TALL",
+  "drink-malta": "TALL", "drink-koto-ginger-beer": "TALL", "drink-blue-ridge-bucha": "TALL", "drink-pearl-island-water": "TALL", "product-aioli-bottle": "TALL", "product-aioli-vegan-bottle": "TALL", "product-shallot-vinaigrette": "TALL", "product-pikliz-jar": "TALL", "product-pikliz-12oz": "TALL",
   "salad-kale": "WIDE_TRAY", "wings-jerk": "WIDE_TRAY", "wings-curry": "WIDE_TRAY",
 };
 
@@ -114,7 +108,7 @@ const entry = (id: string, name: string, price: string, description: string, pho
   };
 };
 const proteinDescription = "Served as a platter with rice with pigeon peas, kale salad, fried plantains, aioli and pikliz.";
-const protein = (id: string, name: string, surcharge: number): MenuEntry => ({ ...entry(id, name, surcharge === 0 ? "No extra charge" : `+$${surcharge.toFixed(2)}`, proteinDescription, id), surcharge });
+const protein = (id: string, name: string, surcharge: number): MenuEntry => entry(id, name, surcharge === 0 ? "No extra charge" : `+$${surcharge.toFixed(2)}`, proteinDescription, id);
 
 export const menuData = {
   orderUrl: externalLinks.orderUrl,
