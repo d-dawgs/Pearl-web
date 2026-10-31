@@ -5,6 +5,7 @@ Help Diego build the public website only. This repository is independent of the 
 ## Start here
 
 - Read README.md, docs/CONTEXT.md, docs/BUILD_PLAN.md and docs/DESIGN.md.
+- Read the "Client preferences" section of docs/DESIGN.md before any visual, photo decision. No black in new UI. Colors only from tokens or the recorded preferred palette, applied through an approved brief.
 - Read docs/PRD.md and its status before feature work. It is a draft until Diego and Kean accept it. Do not rewrite or replace it without their instruction.
 - Clarify substantial product/design choices, prepare a complete file-bounded brief and obtain approval before implementation. Follow Diego's design-first, page-by-page workflow.
 - Check current local changes. Preserve work that is outside the task.

@@ -64,7 +64,32 @@ Production video, approved Pearl Island photos to replace the current placeholde
 
 ## Palette
 
+These tokens are the current build. Sober's preferred direction (below, Oct 30) replaces them only through an approved design brief.
+
 - `--cyan: #00A1CA` — legacy only; no new UI. `--blue: #206B8D` — brand headings, links, prices and active states.
 - `--ink: #1C1C1C` — near-black text, actions and footer. `--body: #383838` — body text. `--white: #FFFFFF` — white surfaces and text.
 - `--welcome-band: #E8F6FA` — Welcome and light tint. `--warm: #F7F2EB` — Visit & pickup. `--newsletter: #F4F4F4` — newsletter.
 - No new hex colors; use tokens. `#00A1CA` is legacy only.
+
+## Client preferences: Sober Pierre (Oct 29–30, 2026)
+
+Read before any visual, copy or photo decision. Sources: Oct 29 meeting notes and Diego's Oct 29–30 review notes.
+- Feel: lively, colorful, energetic Caribbean culture. The Oct 29 build felt too bland. Keep the modern spacing and clean layout he liked.
+- He liked: Welcome, the three cards and the Menu page.
+- Identity: Afro-Caribbean, with Haitian roots, representing the whole Caribbean. Photos should show more Black faces and hands and be culturally in tune; no clichés.
+- Theme: tropical on white. **No black anywhere**: his current site has none. The current near-black footer changes only in a future approved brief.
+- Logo: a circular seal reading "PEARL ISLAND CATERING · SAVOR THE FLAVOR", with two palms, hills and water lines in one blue on white. A vector file is still needed.
+- Preferred palette (from the logo):
+  - White base.
+  - Logo blue #449CC4 leads: title, headlines, frames, color blocks. Use it as text only at 24px+.
+  - Deep logo blue #1E5A78: buttons and small text, with white text on it.
+  - Text #24485A instead of black.
+  - Sky #68C0E0, lagoon #B8DAEE, mist #E6F4FB.
+  - Tropical accents, sparingly: mango #F5A623, hibiscus #E8553D, palm #1F6B4A, sand #FFF6E3.
+  - This supersedes the Oct 29 turquoise-led (#00A1CA) idea.
+- Contrast: white text on #449CC4, mango or hibiscus fails, so use #1E5A78 or #24485A text on light colors.
+- Fonts: Georgia (headings) and Arial (body) stay until a tropical display font is chosen with the design direction. Candidates: Shrikhand, Lilita One, Bagel Fat One, Fraunces, Righteous, Bebas Neue, DM Serif Display.
+- Homepage priority: To Go and Catering lead with equal weight. Jarred products (pikliz, aioli, vinaigrette) get only a light mention for now.
+- Navigation: Home, Menu, Catering, Our Story, plus Community in the phone menu.
+- Design style: not chosen yet. Explored options live in Diego's "Pearl Island Design Styles" canvas (styles 1–26, Soft Organic 22A–J, Cinematic 23A–E, white + logo-blue L1–L6).
+- Later: show his Spoonfed ratings and testimonials on the site.

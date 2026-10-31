@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { desktopPages, externalLinkDescriptionId, externalLinks, inactiveDescriptionId, mobilePages } from "./site-content";
+import { desktopPages, externalLinkDescriptionId, externalLinks, hrefFor, inactiveDescriptionId, mobilePages } from "./site-content";
 import styles from "./site-header.module.css";
 
 const instagramPath = "M46.91 25.816c-.073-1.597-.326-2.687-.697-3.641-.383-.986-.896-1.823-1.73-2.657-.834-.834-1.67-1.347-2.657-1.73-.954-.371-2.045-.624-3.641-.697C36.585 17.017 36.074 17 32 17s-4.585.017-6.184.09c-1.597.073-2.687.326-3.641.697-.986.383-1.823.896-2.657 1.73-.834.834-1.347 1.67-1.73 2.657-.371.954-.624 2.045-.697 3.641C17.017 27.415 17 27.926 17 32s.017 4.585.09 6.184c.073 1.597.326 2.687.697 3.641.383.986.896 1.823 1.73 2.657.834.834 1.67 1.347 2.657 1.73.954.371 2.045.624 3.641.697C27.415 46.983 27.926 47 32 47s4.585-.017 6.184-.09c1.597-.073 2.687-.326 3.641-.697.986-.383 1.823-.896 2.657-1.73.834-.834 1.347-1.67 1.73-2.657.371-.954.624-2.045.697-3.641C46.983 36.585 47 36.074 47 32s-.017-4.585-.09-6.184Zm-2.7 12.245c-.067 1.462-.311 2.257-.516 2.785-.272.7-.597 1.2-1.122 1.725-.525.525-1.025.85-1.725 1.122-.529.205-1.323.45-2.785.516-1.581.072-2.056.087-6.061.087s-4.48-.015-6.061-.087c-1.462-.067-2.257-.311-2.785-.516-.7-.272-1.2-.597-1.725-1.122-.525-.525-.85-1.025-1.122-1.725-.205-.529-.45-1.323-.516-2.785-.072-1.582-.087-2.056-.087-6.061s.015-4.48.087-6.061c.067-1.462.311-2.257.516-2.785.272-.7.597-1.2 1.122-1.725.525-.525 1.025-.85 1.725-1.122.529-.205 1.323-.45 2.785-.516 1.582-.072 2.056-.087 6.061-.087s4.48.015 6.061.087c1.462.067 2.257.311 2.785.516.7.272 1.2.597 1.725 1.122.525.525.85 1.025 1.122 1.725.205.529.45 1.323.516 2.785.072 1.582.087 2.056.087 6.061s-.015 4.48-.087 6.061ZM32 24.297c-4.254 0-7.703 3.449-7.703 7.703s3.449 7.703 7.703 7.703 7.703-3.449 7.703-7.703-3.449-7.703-7.703-7.703ZM32 37c-2.761 0-5-2.239-5-5s2.239-5 5-5 5 2.239 5 5-2.239 5-5 5Zm8.007-14.807c-.994 0-1.8.806-1.8 1.8s.806 1.8 1.8 1.8 1.8-.806 1.8-1.8-.806-1.8-1.8-1.8Z";
@@ -24,7 +24,7 @@ function SocialLinks({ className, linkClassName, onClick }: { className: string;
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const currentPage = pathname === "/menu" ? "Menu" : pathname === "/" ? "Home" : null;
+  const currentPage = pathname === "/" ? "Home" : pathname === "/menu" ? "Menu" : pathname === "/catering" ? "Catering" : pathname === "/our-story" ? "Our Story" : null;
   const currentIndex = currentPage ? desktopPages.indexOf(currentPage) : 0;
   const [hovered, setHovered] = useState<number | null>(null);
   const [focused, setFocused] = useState<number | null>(null);
@@ -173,12 +173,13 @@ export function SiteHeader() {
     const isCurrent = label === currentPage;
     const className = mobile ? (isCurrent ? styles.currentMobile : undefined) : styles.navButton;
     const handleClick = label === "Home" ? handleHomeClick : undefined;
-    if (label === "Home" || label === "Menu") {
+    const href = hrefFor(label);
+    if (href) {
       return (
         <Link
           key={`${mobile ? "mobile" : "desktop"}-${label}`}
           ref={(element) => { if (!mobile) navButtons.current[index] = element; }}
-          href={label === "Home" ? "/" : "/menu"}
+          href={href}
           className={className}
           aria-current={isCurrent ? "page" : undefined}
           onClick={(event) => { handleClick?.(event); if (mobile) closeMenu(); }}

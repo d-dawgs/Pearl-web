@@ -1,6 +1,6 @@
 # Pearl-web — Pearl Island Website PRD
 
-**Version:** 0.3 · **Updated:** October 26, 2026 · **Status:** Draft for Diego and Kean review
+**Version:** 0.4 · **Updated:** October 30, 2026 · **Status:** Draft for Diego and Kean review
 **Owners:** Diego and Kean, co-founders. Both products are joint. Diego leads the website build; Kean leads the catering build; both work on both.
 **Client:** Sober Pierre, Pearl Island (Charlottesville)
 **Repo:** d-dawgs/Pearl-web (private) · local: ~/Desktop/Builds/Pearl-web
@@ -40,6 +40,7 @@ The website is its own product, with its own repo, design and release cycle. It 
 - **He wants people to feel like they're on a beach eating his food:** authentic cuisine, family memories, good vibes. (Oct 20)
 - **He wants Pearl Island to be more technology-centered**, with less manual work and more time for family and customers. (Oct 20)
 - **He isn't sure his social media pays off.** (Oct 6)
+- **Oct 29–30 review:** wants a lively, colorful, energetic Caribbean feel (the build felt bland); keep the clean, modern spacing. Afro-Caribbean identity with Haitian roots, representing the whole Caribbean; more Black faces and hands in photos. Tropical on white, no black, colors from his logo. Liked Welcome, the cards and Menu. Wants Spoonfed ratings and testimonials on the site later. Details: docs/DESIGN.md "Client preferences".
 
 ### What's wrong with the current site (Oct 22 review)
 
@@ -102,16 +103,15 @@ The website is its own product, with its own repo, design and release cycle. It 
 
 ## 8. Sitemap
 
-The seven existing destinations stay, and Menu becomes its own page. Exact URLs, and page-vs-section choices, are still open.
+Current URLs: /, /menu, /catering, /our-story.
 
 | Destination | Type | What it does | Status |
 | --- | --- | --- | --- |
-| Home | Page | Brand intro, hero, three cards, newsletter | Designing now |
-| Menu | Page | Illustrated menu with photos | Planned; needs approved menu and photos |
-| Catering | Page | Services, sample menu, how ordering works, "Start a catering order" | Planned |
-| Pearl Island 2 Go | Page | Hours, pickup/delivery info, address/map, Order Now → Square | Planned |
-| Our Story | Page | Sober and family's story | Planned; verify claims |
-| Community | Page or section | Community programs and events | Planned; confirm what's still active |
+| Home | Page | Brand intro, hero, three cards, newsletter | Built; Sober reviewed Oct 29 |
+| Menu | Page | Illustrated menu with photos | Built (demo photos); Sober reviewed Oct 29 |
+| Catering | Page | Services, sample menu, how ordering works, "Start a catering order" | Blank page wired (WEB-025); content not designed |
+| Our Story | Page | Sober and family's story | Blank page wired (WEB-025); story text from Sober pending |
+| Community | Page or section | Community programs and events | Phone menu only; inactive |
 | Gift Cards | External link | Square gift cards | Link only |
 | Apply Here | External link | Google Form | Link only |
 | Contact | Footer (plus a page if needed) | Phone, email, address, socials | Footer |
@@ -151,8 +151,10 @@ Order Now always means Square carryout. Catering is one card and one page, not t
 
 **Visual direction**
 
-- **Palette (C26):** #00A1CA brand cyan, #206B8D active blue, #FFFFFF background, #383838 body text, #1C1C1C outlines/near-black. Proposed placement: white header, cyan newsletter, near-black footer.
-- **Keep:** the logo, warm food and people photography, Caribbean character and friendly display type. Earlier team direction mentioned orange/yellow accents; they aren't in the approved palette, though the logo artwork can keep its own colors.
+- **Palette (Oct 30):** white base, logo blue #449CC4 leads, deep logo blue #1E5A78 for buttons and small text, #24485A text, no black, sparing tropical accents. See docs/DESIGN.md.
+- **Fonts:** Georgia and Arial for now; a tropical display font is chosen with the design direction.
+- **Theme:** tropical, colorful and clean; To Go and Catering lead equally; jarred products light.
+- **Keep:** the logo, warm food and people photography, Caribbean character and friendly display type.
 - **Avoid:** a generic SaaS look, long promotional sections, and the old site's huge thin text and loose spacing.
 - **Reference:** JRK (eatjrk.com) for layout and structure only, never its branding, photos or text.
 
@@ -272,7 +274,10 @@ Selected: **not decided.** Recommended: the first.
 | Decision | Notes | Owner | Needed by |
 | --- | --- | --- | --- |
 | Final URLs; Community as page or section | Section 8 | Diego, with Kean | Release 2 |
-| Color placement | White header / cyan newsletter / dark footer proposed | Diego, with Kean | Release 1 |
+| Design direction and display font | Explored in Diego's canvas; none chosen | Diego, with Sober | Next Sober meeting |
+| Footer color without black | Footer is near-black today | Diego | With the design brief |
+| Logo vector file | Needed for header and seal | Sober | Before launch |
+| Catering platform URL | Catering page is blank for now | Diego + Kean | Before launch |
 | Logo lettering source | Original font or vector from Sober; no lookalike passed off as exact | Diego + Sober | Release 1 |
 | Mobile menu behavior | Design before build | Diego, with Kean | Release 1 |
 | Newsletter destination | Section 11C | Diego + Kean, with Sober | Release 3 |
@@ -295,6 +300,8 @@ Selected: **not decided.** Recommended: the first.
 - **Oct 26:** Diego chose the following; Kean confirms in review:
   - The website gets a Catering info page that links to the software.
   - The old repo will be archived rather than deleted.
+- **Oct 27:** Pearl Island 2 Go page dropped.
+- **Oct 29–30:** Sober review: colorful Caribbean feel, logo-blue palette on white, no black. Catering and Our Story built as blank wired pages (WEB-025).
 
 ## 17. Sources
 

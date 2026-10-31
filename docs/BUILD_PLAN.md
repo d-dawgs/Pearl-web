@@ -15,6 +15,7 @@ Status: WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready 
 - WEB-022 v1 — Palette tokens + color audit + impeccable final audit — Ready for Diego review.
 - WEB-023 v1 — Subtle menu animation (A) + smooth shore edges — Ready for Diego review.
 - WEB-024 v1 — Codebase cleanup (no visual changes) — Ready for Diego review.
+- WEB-025 v2. Blank Catering/Our Story pages wired (desktop nav, phone menu, footer), bolder blue Menu category tabs (WEB-025b), Sober's design preferences in DESIGN.md/PRD v0.4/AGENTS.md, new CLAUDE.md. Ready for Diego review.
 - Oct 29 presentation checkpoint: show this version to Sober for review; record his feedback before acceptance or launch. Git-ignored Home placeholder photos remain local-only pending source/license clearance.
 
 - WEB-019 v4 removes the review switch and keeps the Tropical Poster design, replaces 29 photos with supplied HD versions, and tightens the left footer column. Remaining side items use lower-resolution crops; Ginger Beer – Non-Alcoholic and Cafe sin Leche stay monogram placeholders. All menu photos are generated demos to replace with Pearl Island originals later.

@@ -4,6 +4,15 @@ export const mobilePages = [
   ...desktopPages,
   "Community",
 ] as const;
+export const pageHref = {
+  Home: "/",
+  Menu: "/menu",
+  Catering: "/catering",
+  "Our Story": "/our-story",
+} as const;
+export function hrefFor(label: string): string | null {
+  return label in pageHref ? pageHref[label as keyof typeof pageHref] : null;
+}
 
 export const externalLinks = {
   orderUrl: "https://pearlislandcatering.square.site/",

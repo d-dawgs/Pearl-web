@@ -4,7 +4,7 @@ import { Literata, Lora } from "next/font/google";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
-import { externalLinkDescriptionId, footerContent, footerPages, externalLinks, inactiveDescriptionId } from "./site-content";
+import { externalLinkDescriptionId, footerContent, footerPages, externalLinks, hrefFor } from "./site-content";
 import styles from "./site-footer.module.css";
 
 const footerDisplayFont = Lora({ weight: "600", subsets: ["latin"], display: "swap", fallback: ["Georgia", "Times New Roman", "serif"], variable: "--footer-display-font" });
@@ -36,10 +36,8 @@ export function SiteFooter() {
   return (
     <footer className={`${styles.footer} ${footerDisplayFont.variable} ${footerTextFont.variable}`}>
       <nav className={styles.pages} aria-label="Footer pages">
-        {footerPages.map((page) => page === "Home" || page === "Menu" ? (
-          <Link key={page} href={page === "Home" ? "/" : "/menu"} onClick={page === "Home" ? replayHome : undefined}>{page}</Link>
-        ) : (
-          <button key={page} type="button" aria-disabled="true" aria-describedby={inactiveDescriptionId}>{page}</button>
+        {footerPages.map((page) => (
+          <Link key={page} href={hrefFor(page)!} onClick={page === "Home" ? replayHome : undefined}>{page}</Link>
         ))}
       </nav>
       <a href={externalLinks.orderUrl} target="_blank" rel="noopener noreferrer" className={styles.orderButton} aria-describedby={externalLinkDescriptionId}>Order Now</a>
