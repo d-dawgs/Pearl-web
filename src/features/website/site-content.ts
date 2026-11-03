@@ -20,6 +20,8 @@ export const externalLinks = {
   applyUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfwcketTYeQHcyBa7snQGlNo20yE17iryFToIb88DHf0rxILA/viewform?usp=send_form",
   instagramUrl: "https://www.instagram.com/pearlislandcatering",
   facebookUrl: "https://www.facebook.com/pearlislandcatering/",
+  cateringUrl: "https://api.getspoonfed.com/1438/pearl-island/",
+  specialEventsMenuUrl: "https://pearlislandcatering.com/s/2026-Pearl-Island-Catering-Menu-WOP_1_8_2026-Google-Docs-fjbj.pdf",
 } as const;
 
 export const inactiveDescriptionId = "inactive-destinations-description";
