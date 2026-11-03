@@ -1,133 +1,83 @@
 "use client";
 
 import { useEffect } from "react";
-
-const revealThreshold = 0.18;
+import { usePathname } from "next/navigation";
 
 export function ScrollMotion() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const root = document.documentElement;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const heroPhoto = document.querySelector<HTMLElement>("[data-hero-photo]");
-    const hero = heroPhoto?.closest<HTMLElement>("[data-hero]");
-    const heroFade = hero?.querySelector<HTMLElement>("[data-hero-fade]");
-    const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-reveal]"));
-    let observer: IntersectionObserver | null = null;
-    let driftFrame = 0;
-    let replayFrame = 0;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const hero = document.querySelector<HTMLElement>("[data-home-hero]");
+    const reveals = [...document.querySelectorAll<HTMLElement>("[data-reveal]")];
+    const reviews = document.querySelector<HTMLElement>("[data-reviews]");
+    const reviewSets = [...(reviews?.querySelectorAll<HTMLElement>("[data-review-set]") ?? [])];
+    let frame = 0;
+    let reviewTimer: ReturnType<typeof setInterval> | undefined;
+    let reviewIndex = 0;
 
-    const updateFadeMask = () => {
-      if (!hero || !heroFade) return;
-      const layerHeight = Math.min(356, hero.clientHeight);
-      const rampHeight = Math.max(0, Math.min(310, layerHeight - 46));
-      const stops = Array.from({ length: 10 }, (_, index) => {
-        const t = index / 9;
-        const eased = t * t * (3 - 2 * t);
-        const alpha = 0.08 * eased;
-        const position = rampHeight * t;
-        return `rgb(0 0 0 / ${index === 0 ? 0 : (alpha / 0.08).toFixed(4)}) ${position.toFixed(2)}px`;
-      });
-      const mask = `linear-gradient(to bottom, ${stops.join(", ")}, #000 ${layerHeight}px)`;
-      heroFade.style.setProperty("-webkit-mask-image", mask);
-      heroFade.style.setProperty("mask-image", mask);
-    };
-
-    const showEverything = () => {
-      observer?.disconnect();
-      root.removeAttribute("data-motion-ready");
-      revealElements.forEach((element) => { element.dataset.revealed = "true"; });
-      heroPhoto?.style.setProperty("--hero-drift-y", "0px");
-    };
-
-    const revealVisibleElements = () => {
-      replayFrame = 0;
-      revealElements.forEach((element) => {
-        const rect = element.getBoundingClientRect();
-        const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
-        const visibleHeight = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
-        const area = Math.max(1, rect.width * rect.height);
-        if ((visibleWidth * visibleHeight) / area >= revealThreshold) element.dataset.revealed = "true";
+    const rotateReviews = () => {
+      reviewIndex = (reviewIndex + 1) % reviewSets.length;
+      reviewSets.forEach((set, index) => {
+        const active = index === reviewIndex;
+        set.dataset.active = String(active);
+        set.setAttribute("aria-hidden", String(!active));
       });
     };
 
-    const setMotionReady = () => {
-      if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-        showEverything();
-        return;
+    const update = () => {
+      frame = 0;
+      if (preference.matches) return;
+      const viewport = window.innerHeight;
+      reveals.forEach((element) => {
+        if (!element.classList.contains("is-in") && element.getBoundingClientRect().top < viewport * .9) element.classList.add("is-in");
+      });
+      if (reviews && !reviews.classList.contains("is-in") && reviews.getBoundingClientRect().top < viewport * .9) {
+        reviews.classList.add("is-in");
+        if (reviewSets.length) reviewTimer = setInterval(rotateReviews, 9000);
       }
+      if (hero) {
+        const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+        const start = Math.max(0, heroTop - .25 * viewport);
+        const progress = Math.max(0, Math.min(1, (window.scrollY - start) / Math.max(1, .7 * hero.offsetHeight)));
+        hero.style.setProperty("--sp", String(progress));
+      }
+    };
 
-      revealElements.forEach((element) => { delete element.dataset.revealed; });
-      root.dataset.motionReady = "true";
-      observer?.disconnect();
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const element = entry.target as HTMLElement;
-          if (entry.intersectionRatio >= revealThreshold) element.dataset.revealed = "true";
-          else if (entry.intersectionRatio === 0) delete element.dataset.revealed;
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const onPreference = () => {
+      if (preference.matches) {
+        root.removeAttribute("data-motion-ready");
+        reveals.forEach((element) => element.classList.add("is-in"));
+        reviews?.classList.add("is-in");
+        hero?.style.setProperty("--sp", "0");
+        if (reviewTimer) clearInterval(reviewTimer);
+        reviewTimer = undefined;
+        reviewIndex = 0;
+        reviewSets.forEach((set, index) => {
+          set.dataset.active = String(index === 0);
+          set.setAttribute("aria-hidden", String(index !== 0));
         });
-      }, { threshold: [0, revealThreshold] });
-      revealElements.forEach((element) => observer?.observe(element));
-    };
-
-    const updateDrift = () => {
-      driftFrame = 0;
-      if (!hero || !heroPhoto || reducedMotion.matches) return;
-      const bounds = hero.getBoundingClientRect();
-      if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
-        const offset = (window.innerHeight / 2) - (bounds.top + bounds.height / 2);
-        const drift = Math.max(-200, Math.min(200, offset * 0.2));
-        heroPhoto.style.setProperty("--hero-drift-y", `${drift}px`);
+      } else {
+        root.dataset.motionReady = "true";
+        schedule();
       }
     };
 
-    const scheduleDrift = () => {
-      if (!driftFrame) driftFrame = window.requestAnimationFrame(updateDrift);
-    };
-
-    const onReplay = () => {
-      if (reducedMotion.matches) {
-        window.scrollTo(0, 0);
-        showEverything();
-        return;
-      }
-      if (replayFrame) window.cancelAnimationFrame(replayFrame);
-      revealElements.forEach((element) => { delete element.dataset.revealed; });
-      heroPhoto?.style.setProperty("--hero-drift-y", "0px");
-      window.scrollTo(0, 0);
-      revealElements.forEach((element) => { void getComputedStyle(element).opacity; });
-      replayFrame = window.requestAnimationFrame(revealVisibleElements);
-    };
-
-    const onMotionPreferenceChange = () => {
-      setMotionReady();
-      if (reducedMotion.matches) {
-        if (driftFrame) window.cancelAnimationFrame(driftFrame);
-        driftFrame = 0;
-        heroPhoto?.style.setProperty("--hero-drift-y", "0px");
-      } else scheduleDrift();
-    };
-
-    setMotionReady();
-    updateFadeMask();
-    scheduleDrift();
-    window.addEventListener("scroll", scheduleDrift, { passive: true });
-    window.addEventListener("resize", updateFadeMask, { passive: true });
-    window.addEventListener("resize", scheduleDrift, { passive: true });
-    window.addEventListener("pearl:replay-intro", onReplay);
-    reducedMotion.addEventListener("change", onMotionPreferenceChange);
-
+    onPreference();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    preference.addEventListener("change", onPreference);
     return () => {
-      window.removeEventListener("scroll", scheduleDrift);
-      window.removeEventListener("resize", updateFadeMask);
-      window.removeEventListener("resize", scheduleDrift);
-      window.removeEventListener("pearl:replay-intro", onReplay);
-      reducedMotion.removeEventListener("change", onMotionPreferenceChange);
-      observer?.disconnect();
-      if (driftFrame) window.cancelAnimationFrame(driftFrame);
-      if (replayFrame) window.cancelAnimationFrame(replayFrame);
-      heroPhoto?.style.setProperty("--hero-drift-y", "0px");
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      preference.removeEventListener("change", onPreference);
+      if (frame) cancelAnimationFrame(frame);
+      if (reviewTimer) clearInterval(reviewTimer);
+      hero?.style.removeProperty("--sp");
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

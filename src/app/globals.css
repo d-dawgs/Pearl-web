@@ -1,5 +1,13 @@
 /* Pearl Island palette — approved by Diego Oct 29, 2026. Use these tokens; do not add new hex colors. */
 :root {
+  --pi-blue: #449cc4;
+  --pi-mango: #f5a623;
+  --pi-sand: #fff6e3;
+  --pi-white: #ffffff;
+  --pi-ink: #34312d;
+  --pi-hibiscus: #e8553d;
+  --pi-hibiscus-text: #c2402b;
+  --pi-hair: rgba(52, 49, 45, .18);
   --cyan: #00a1ca;
   --blue: #206b8d;
   --white: #ffffff;
@@ -21,16 +29,24 @@
 html, body { min-height: 100%; margin: 0; }
 
 body {
-  background: var(--white);
-  color: var(--body);
-  font: 400 15px/1.5 Arial, Helvetica, sans-serif;
+  background: var(--pi-white);
+  color: var(--pi-ink);
+  font: 400 16px/1.7 var(--font-body), Arial, sans-serif;
 }
 
 button, input { font: inherit; }
 button { cursor: pointer; }
 button[aria-disabled="true"], button:disabled { cursor: default; }
 
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--pi-blue); outline-offset: 2px; }
+
+html[data-motion-ready="pending"] [data-reveal],
+html[data-motion-ready="true"] [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(28px); }
+html[data-motion-ready="true"] [data-reveal] { transition: opacity 1s ease, transform 1.1s cubic-bezier(.2,.7,.2,1); }
+html[data-motion-ready="true"] [data-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html[data-motion-ready] [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
 
 .sr-only {
   position: absolute;

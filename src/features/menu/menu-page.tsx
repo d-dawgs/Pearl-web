@@ -47,6 +47,16 @@ export function MenuPage() {
   const switchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("category");
+    const match = menuData.categories.find((category) => category.id === requested);
+    if (!match) return;
+    const frame = requestAnimationFrame(() => {
+      setActiveCategory(match.id);
+      setShownCategory(match.id);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const entries: readonly MenuEntry[] = shownCategory === "platters" ? menuData.proteins : shownCategory === "sides" ? menuData.sides : shownCategory === "salads" ? menuData.salads : shownCategory === "drinks" ? menuData.drinks : shownCategory === "pearl-island-products" ? menuData.products : [];
   useEffect(() => () => { if (switchTimer.current) clearTimeout(switchTimer.current); }, []);
   useEffect(() => {
