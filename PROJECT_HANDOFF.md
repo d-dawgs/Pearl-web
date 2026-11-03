@@ -1,11 +1,11 @@
 # Pearl Island website — project handoff
 
-Snapshot: October 29, 2026. Read AGENTS.md first. This file records the current implementation and Diego's later decisions; docs/PRD.md is a draft, and parts of README.md, docs/CONTEXT.md, docs/DESIGN.md and tracker notes describe older plans. Source code and explicit later approvals take precedence where those documents conflict. The website is a **Sober presentation review version**, not an accepted launch release.
+Snapshot: November 2, 2026. Read AGENTS.md first. This file records the current implementation and Diego's later decisions; docs/PRD.md is a draft, and parts of docs/DESIGN.md and tracker notes describe older plans. Source code and explicit later approvals take precedence where those documents conflict. The website is a **Sober presentation review version**, not an accepted launch release.
 
 ## Repository and present state
 
-- Public website repository: d-dawgs/Pearl-web, independent of the Catering software repository. Branch: diego/homepage-design. Current HEAD: b11465e (WEB-023: prepare Sober presentation review version). No deployment is recorded here.
-- WEB-024 cleanup is **uncommitted** and should be preserved. It moved ten older planning documents from docs/website/ into /Users/diegobartra/Desktop/Builds/Pearl-web-archive/docs-website/, moved unused welcome-greens.jpg and drink-koto-ginger-beer-passion.png into that archive's images/ folder, removed unused menu-page.module.css and social-icons.tsx, trimmed unused menu data, and updated .gitignore and tracker/document links. Its changes appear as modifications/deletions in git status; do not mistake them for accidental loss. WEB-024 checks passed and before/after screenshots were visually equivalent. Recheck status before new work; this handoff is the only new root file from this task.
+- Public website repository: d-dawgs/Pearl-web, independent of the Catering software repository. Branch: diego/homepage-design. WEB-024 cleanup is committed and pushed; WEB-025 is committed locally as e47b742 and may not yet be pushed. Check Git status and the remote before new work. No deployment is recorded here.
+- WEB-024 moved ten older planning documents and unused images to /Users/diegobartra/Desktop/Builds/Pearl-web-archive/, removed unused code and passed visual comparison. The archive is outside the repository and is not included in a fresh checkout.
 - AGENTS.md governs approvals, file boundaries and verification. The standalone foundation is the last work the trackers call accepted; subsequent website modules are marked Ready for Diego review. Diego and Sober still need to accept the presentation work and factual content.
 
 ## Stack and architecture
@@ -14,7 +14,7 @@ Next.js 16.4.2 App Router, React 19.3.0, TypeScript, scoped CSS modules and src/
 
 | Area | Relevant files and responsibility |
 | --- | --- |
-| App shell | src/app/layout.tsx provides metadata, globals and a before-paint motion gate; suppressHydrationWarning is on html only. src/app/page.tsx is the thin Home route. src/app/menu/page.tsx is the thin Menu route with metadata, shared header/footer and Visit section. |
+| App shell | src/app/layout.tsx provides metadata, globals and a before-paint motion gate; suppressHydrationWarning is on html only. src/app/page.tsx is the thin Home route. src/app/menu/page.tsx is the Menu route with Visit; src/app/catering/page.tsx and src/app/our-story/page.tsx are blank, linked routes using the shared header/footer and blank-page.module.css. |
 | Shared website | src/features/website/site-header.tsx and site-header.module.css; site-footer.tsx and site-footer.module.css; site-content.ts holds shared navigation, business info and external URLs. |
 | Home | home-page.tsx/module.css compose Welcome, shore and newsletter; destination-cards.tsx/module.css contain the three photo cards; scroll-motion.tsx handles reveals, replay and shore drift. |
 | Menu | src/features/menu/menu-data.ts is the single source for categories, products, pricing and image metadata. menu-page.tsx/module.css render category content and modal; category-bar.tsx/module.css render accessible tabs; visit-section.tsx/module.css render the location and map. |
@@ -22,7 +22,7 @@ Next.js 16.4.2 App Router, React 19.3.0, TypeScript, scoped CSS modules and src/
 
 ## Approved visual system and Home
 
-Use the palette tokens in src/app/globals.css: blue #206B8D, near-black #1C1C1C, body #383838, white #FFFFFF, Welcome tint #E8F6FA, Visit warm #F7F2EB and newsletter neutral #F4F4F4. Legacy cyan #00A1CA stays defined but is not used for new UI. Derived translucent colors use RGB token channels. Georgia and Arial/Helvetica are the site faces; only the footer uses its scoped Lora and Literata via next/font/google. Do not introduce another visual style. JRK was a layout/measurement reference, not a source of branding, assets, copy or code.
+The current build uses the palette tokens in src/app/globals.css: blue #206B8D, near-black #1C1C1C, body #383838, white #FFFFFF, Welcome tint #E8F6FA, Visit warm #F7F2EB and newsletter neutral #F4F4F4. Legacy cyan #00A1CA stays defined but is not used for new UI. Sober's newer white-and-logo-blue, no-black preference is recorded in docs/DESIGN.md but has **not** been applied; it needs an approved design brief. Derived translucent colors use RGB token channels. Georgia and Arial/Helvetica are the site faces; only the footer uses scoped Lora and Literata via next/font/google. JRK was a layout/measurement reference, not a source of branding, assets, copy or code.
 
 Home order is **Welcome → beach shore → Menu/Catering/Our Story cards → newsletter**. The full-width white desktop header has left navigation, a centered PEARL ISLAND wordmark and right social/Order Now actions. At widths below 1100px it becomes a phone header with a full-screen menu, focus trap, Escape, focus return, scroll lock and safe-area support. The same header fades/lifts through the first 140px of scrolling; farther down it hides, then returns fixed after at least 8px upward scroll with a 320ms slide/fade and shadow. Its place in the document is reserved so content does not jump. Keyboard focus and an open phone menu keep it visible; reduced motion is immediate.
 
@@ -48,7 +48,7 @@ The separate **Visit & pickup** section sits after category content and before t
 
 ## Links, inactive areas and content authority
 
-Shared external URLs live once in src/features/website/site-content.ts. Every Order Now or Order Online goes to Pearl Island's Square ordering site in a new tab; social, Gift Cards and Apply Here also open their respective external destinations with safe rel attributes and screen-reader new-tab hints. Home and Menu use Next Link; Menu's photo card links to /menu. Catering, Our Story and Community destinations remain intentionally inactive with accessible explanations. Footer phone/email are selectable plain text; Visit's versions are links. The public Catering page and its eventual handoff to the separate Catering product have not been designed or wired.
+Shared external URLs live once in src/features/website/site-content.ts. Every Order Now or Order Online goes to Pearl Island's Square ordering site in a new tab; social, Gift Cards and Apply Here also open their respective external destinations with safe rel attributes and screen-reader new-tab hints. Home, Menu, Catering and Our Story use Next Link in the header and footer. Menu's photo card links to /menu; the Catering and Our Story cards remain inactive. Community remains inactive in the phone menu. Footer phone/email are selectable plain text; Visit's versions are links. Catering and Our Story routes currently contain only a blank white canvas with an accessible heading; their content and the Catering-platform handoff remain undesigned.
 
 Menu names/prices/descriptions were supplied for the Sober demo from Square information in October 2026; do not invent or silently correct them. Verify product descriptions, side/drink base surcharges, combo drink eligibility, full drink list/salad details, and the Pikliz Jar $7 versus earlier $8 discrepancy. Verify shared business facts, addresses, phone, email, hours and all external destinations with Sober. There is an apparent typo in the current Pikliz Jar description; keep source data until corrected with approval. Customer-facing menu copy should not add “you/your”, dietary assurances or unapproved claims.
 
@@ -66,9 +66,9 @@ With dependencies already installed: npm run dev for local work. For a productio
 
 ## Next steps
 
-1. Review and decide whether to commit the current uncommitted WEB-024 cleanup. Do not overwrite its moved archive files or unrelated work.
+1. Check the current branch and Git status before new work. WEB-025 is a local commit; confirm whether Diego wants it pushed. Do not overwrite the archived WEB-024 files or unrelated work.
 2. Have Diego and Sober review the current Home/Menu presentation, factual business content, menu pricing/descriptions, map/hours, external links and media rights. Record acceptance separately from passing checks.
 3. Obtain original, licensed Home and menu photography; replace ignored card photos and generated food cutouts before any public deployment. Resolve the favicon 404.
-4. After approval, prepare file-bounded briefs for the remaining public pages and the Catering handoff, per AGENTS.md. Decide newsletter provider and launch/hosting separately. Keep Square as the only carryout ordering flow until another integration is approved.
+4. Pick the design direction and display font with Diego and Sober, then apply it through an approved brief. Design the Catering and Our Story content, decide Community's destination, and obtain the Catering-platform URL. Decide newsletter provider and launch/hosting separately. Keep Square as the only carryout ordering flow until another integration is approved.
 
-AGENTS.md needs no immediate edit. A future small addition could tell new agents to read this handoff after the core docs, but its existing instructions already require checking current state and preserving outside work.
+AGENTS.md and CLAUDE.md already direct future agents to the current guidance; preserve them.
