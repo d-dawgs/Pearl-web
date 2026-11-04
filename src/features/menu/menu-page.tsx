@@ -6,6 +6,9 @@ import { CategoryBar } from "./category-bar";
 import { menuCopy, menuData, type MenuCategoryId, type MenuEntry } from "./menu-data";
 import styles from "./menu-page.module.css";
 
+const platterIncludes = ["Rice & pigeon peas", "Kale salad", "Plantains", "Aioli", "Pikliz"] as const;
+const platterProteinCount: Record<string, number> = { "half-platter": 1, platter: 1, "half-and-half-platter": 2, "trifecta-platter": 3 };
+
 function SquareLink({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <a className={`${styles.squareButton} ${className}`} href={menuData.orderUrl} target="_blank" rel="noopener noreferrer">{children}<span className="sr-only"> (opens in a new tab)</span></a>;
 }
@@ -29,9 +32,11 @@ function ItemGrid({ items, onOpen }: { items: readonly MenuEntry[]; onOpen: (ite
       onClick={(event) => onOpen(item, event)}
       aria-label={`${item.name}, ${item.price}`}
     >
-      <MenuImage item={item} />
-      <span className={styles.itemName}>{item.name}</span>
-      <span className={styles.itemPrice}>{item.price}</span>
+      <span className={styles.itemBody}>
+        <MenuImage item={item} />
+        <span className={styles.itemName}>{item.name}</span>
+        <span className={styles.itemPrice}>{item.price}</span>
+      </span>
     </button>)}
   </div>;
 }
@@ -80,20 +85,20 @@ function PlatterBar() {
       <div className={styles.platterLayout}>
         <div className={styles.platterLead}>
           <h2 id="build-platter-heading">BUILD A PLATTER</h2>
-          <p className={styles.platterDescription}>{menuCopy.platterIntro}</p>
+          <div><p className={styles.platterLabel}>INCLUDED WITH EVERY PLATTER</p><ul className={styles.platterIncludes}>{platterIncludes.map((item) => <li key={item}>{item}</li>)}</ul></div>
         </div>
         <div className={styles.platterGrid}>
           {menuData.platters.map((platter) => <article className={styles.platterCard} key={platter.id}>
             <h3>{platter.name}</h3>
-            <p>{platter.description}</p>
+            <div className={styles.platterDetail}><span className={styles.proteinDiamonds} aria-hidden="true">{[0, 1, 2].map((index) => <i key={index} className={index < platterProteinCount[platter.id] ? styles.filledDiamond : ""} />)}</span><p>{platter.description}</p></div>
             <strong>{platter.price}</strong>
           </article>)}
         </div>
       </div>
-      <div className={styles.comboStrip}>
-        <strong>{menuCopy.comboHeading}</strong><span>{menuCopy.comboDescription}</span><b>{menuCopy.comboPrice}</b>
+      <div className={styles.platterFooter}>
+        <div className={styles.comboTag}><strong>{menuCopy.comboHeading}</strong><span>{menuCopy.comboDescription}</span><b>{menuCopy.comboPrice}</b></div>
+        <p>Base prices. Some proteins and drinks cost extra.</p>
       </div>
-      <p className={styles.platterDisclaimer}>{menuCopy.platterDisclaimer}</p>
     </div>
   </section>;
 }
@@ -104,6 +109,8 @@ export function MenuPage() {
   const panelRef = useRef<HTMLElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
+  const lastViewedRef = useRef<HTMLElement | null>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get("category");
@@ -133,16 +140,40 @@ export function MenuPage() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     if (!dialogRef.current.open) dialogRef.current.showModal();
-    return () => { document.body.style.overflow = previousOverflow; };
+    const frame = requestAnimationFrame(() => { if (dialogRef.current) dialogRef.current.dataset.open = "true"; });
+    return () => { cancelAnimationFrame(frame); document.body.style.overflow = previousOverflow; };
   }, [selectedItem]);
 
+  useEffect(() => {
+    const clearLast = (event: Event) => {
+      if (lastViewedRef.current && !lastViewedRef.current.contains(event.target as Node)) {
+        delete lastViewedRef.current.dataset.lastViewed;
+        lastViewedRef.current = null;
+      }
+    };
+    document.addEventListener("click", clearLast);
+    return () => { document.removeEventListener("click", clearLast); if (closeTimerRef.current) clearTimeout(closeTimerRef.current); };
+  }, []);
+
   const openItem = (item: MenuEntry, event: MouseEvent<HTMLButtonElement>) => {
+    if (lastViewedRef.current) delete lastViewedRef.current.dataset.lastViewed;
+    lastViewedRef.current = null;
     returnFocusRef.current = event.currentTarget;
     setSelectedItem(item);
   };
-  const closeItem = () => {
+  const finishClose = () => {
+    delete dialogRef.current?.dataset.open;
     setSelectedItem(null);
-    requestAnimationFrame(() => returnFocusRef.current?.focus({ preventScroll: true }));
+    const item = returnFocusRef.current;
+    if (item) { item.dataset.lastViewed = "true"; lastViewedRef.current = item; }
+    requestAnimationFrame(() => item?.focus({ preventScroll: true, focusVisible: false } as FocusOptions & { focusVisible: boolean }));
+  };
+  const requestClose = () => {
+    const dialog = dialogRef.current;
+    if (!dialog?.open || closeTimerRef.current) return;
+    delete dialog.dataset.open;
+    const delay = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 520;
+    closeTimerRef.current = setTimeout(() => { closeTimerRef.current = null; dialog.close(); }, delay);
   };
   const trapDialogTab = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key !== "Tab" || !dialogRef.current) return;
@@ -182,23 +213,23 @@ export function MenuPage() {
               : <ItemGrid items={entries} onOpen={openItem} />}
           </div>
           <div className={styles.orderRow}>
-            <SquareLink>Order on Square</SquareLink>
-            <p>{menuCopy.finalSelections}</p>
+            <SquareLink className={styles.orderNow}>Order Now</SquareLink>
           </div>
         </section>
       </div>
     </section>
     <PlatterBar />
-    <dialog ref={dialogRef} className={styles.itemDialog} aria-labelledby="item-dialog-title" onClick={(event) => { if (event.target === dialogRef.current) dialogRef.current?.close(); }} onKeyDown={trapDialogTab} onClose={closeItem}>
+    <dialog ref={dialogRef} className={styles.itemDialog} aria-labelledby="item-dialog-title" onClick={(event) => { if (event.target === dialogRef.current) requestClose(); }} onKeyDown={trapDialogTab} onCancel={(event) => { event.preventDefault(); requestClose(); }} onClose={finishClose}>
       {selectedItem && <>
-        <button type="button" aria-label="Close" className={styles.dialogClose} onClick={() => dialogRef.current?.close()}>×</button>
+        <button type="button" aria-label="Close" className={styles.dialogClose} onClick={requestClose}>×</button>
         <div className={styles.dialogLayout}>
           <MenuImage item={selectedItem} dialog />
           <div className={styles.dialogText}>
+            <p className={styles.dialogEyebrow}>{menuData.categories.find((category) => category.id === activeCategory)?.label}</p>
             <h2 id="item-dialog-title">{selectedItem.name}</h2>
             <p className={styles.dialogPrice}>{selectedItem.price}</p>
             <p className={styles.dialogDescription}>{selectedItem.description}</p>
-            <SquareLink>Order Now</SquareLink>
+            <div className={styles.dialogActions}><SquareLink className={styles.dialogOrder}>Order Now</SquareLink><button type="button" className={styles.backButton} onClick={requestClose}>Back to menu</button></div>
           </div>
         </div>
       </>}

@@ -29,9 +29,19 @@
 .categoryStrip { display:flex; gap:26px; overflow-x:auto; padding:8px 0 12px; scrollbar-width:none; }
 .categoryStrip::-webkit-scrollbar { display:none; }
 .categoryLink { display:flex; flex:0 0 132px; flex-direction:column; align-items:center; gap:12px; color:var(--pi-blue); font:700 14px/1.3 var(--font-body),Arial,sans-serif; text-align:center; text-decoration:none; }
-.categoryLink:hover { text-decoration:underline; }
-.categoryCircle { position:relative; display:grid; width:132px; height:132px; overflow:hidden; place-items:center; border:3px solid var(--pi-blue); border-radius:50%; background:var(--pi-white); }
-.categoryCircle img { object-fit:contain; padding:12px; }
+.categoryLink > span:last-child { position:relative; padding-bottom:5px; }
+.categoryLink > span:last-child::after { position:absolute; right:0; bottom:0; left:0; height:2px; background:var(--pi-hibiscus); content:""; transform:scaleX(0); transition:transform .45s cubic-bezier(.2,.7,.2,1); }
+.categoryCircle { position:relative; display:grid; width:132px; height:132px; place-items:center; border:3px solid var(--pi-blue); border-radius:50%; background:var(--pi-white); transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s cubic-bezier(.2,.7,.2,1); }
+.categoryCircle img { object-fit:contain; padding:12px; border-radius:50%; transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+.categoryRing { position:absolute; z-index:2; inset:-3px; width:calc(100% + 6px); height:calc(100% + 6px); pointer-events:none; transform:rotate(-90deg); overflow:visible; }
+.categoryRing circle { fill:none; stroke:var(--pi-hibiscus); stroke-width:3; stroke-dasharray:100; stroke-dashoffset:100; transition:stroke-dashoffset .8s cubic-bezier(.2,.7,.2,1); }
+.categoryLink:focus-visible { outline:none; }
+.categoryLink:focus-visible .categoryCircle { outline:3px solid var(--pi-blue); outline-offset:4px; }
+@media (hover:hover) and (pointer:fine) { .categoryLink:hover .categoryRing circle { stroke-dashoffset:0; } .categoryLink:hover .categoryCircle { transform:translateY(-6px); box-shadow:0 18px 28px -16px rgba(20,40,50,.45); } .categoryLink:hover .categoryCircle img { transform:scale(1.07); } .categoryLink:hover > span:last-child::after { transform:scaleX(1); } }
+.categoryLink:focus-visible .categoryRing circle { stroke-dashoffset:0; }
+.categoryLink:focus-visible .categoryCircle { transform:translateY(-6px); box-shadow:0 18px 28px -16px rgba(20,40,50,.45); }
+.categoryLink:focus-visible .categoryCircle img { transform:scale(1.07); }
+.categoryLink:focus-visible > span:last-child::after { transform:scaleX(1); }
 .pendingPhoto { color:var(--pi-blue); font:700 34px/1 var(--font-display),Impact,sans-serif; }
 .reviews { overflow:hidden; padding-block:clamp(44px,5vw,70px); background:var(--pi-blue); color:var(--pi-white); }
 .reviews .sectionHeading { color:var(--pi-white); }
@@ -56,17 +66,18 @@
 @keyframes gentle-float { 50% { transform:translateY(-6px); } }
 .duoSection { background:var(--pi-white); }
 .duoGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
-.carryoutCard,.cateringCard { position:relative; min-height:390px; overflow:hidden; padding:36px; border-radius:3px; }
+.carryoutCard,.cateringCard { position:relative; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); align-items:center; gap:10px; min-height:390px; overflow:hidden; padding:36px; border-radius:3px; }
 .carryoutCard { background:var(--pi-blue); color:var(--pi-white); }
 .cateringCard { background:var(--pi-mango); color:var(--pi-ink); }
-.cardText { position:relative; z-index:1; max-width:63%; }
+.cardText { position:relative; z-index:1; min-width:0; }
 .cardEyebrow { display:inline-block; margin:0 0 20px; padding:6px 10px; border-radius:999px; background:var(--pi-white); color:var(--pi-ink); font:800 12px/1.2 var(--font-body),Arial,sans-serif; letter-spacing:.14em; }
-.carryoutCard h2,.cateringCard h2 { display:flex; align-items:center; gap:10px; margin:0 0 14px; font:700 clamp(36px,4vw,52px)/1 var(--font-display),Impact,sans-serif; letter-spacing:.03em; }
+.carryoutCard h2,.cateringCard h2 { margin:0 0 14px; font:700 clamp(36px,4vw,52px)/1 var(--font-display),Impact,sans-serif; letter-spacing:.03em; }
 .carryoutCard h2 { color:var(--pi-white); }
 .cateringCard h2 { color:var(--pi-blue); }
-.carryoutCard h2::after,.cateringCard h2::after { content:""; width:10px; height:10px; flex:none; background:var(--pi-hibiscus); transform:rotate(45deg); }
-.cardText > p:not(.cardEyebrow) { margin:0 0 22px; font:400 16px/1.7 var(--font-body),Arial,sans-serif; }
-.cardFood { position:absolute; right:-5%; bottom:-16%; width:55%; height:auto; max-height:95%; object-fit:contain; }
+.carryoutCard h2::after,.cateringCard h2::after { display:block; width:56px; height:3px; margin:12px 0 16px; background:var(--pi-hibiscus); content:""; }
+.cardText > p:not(.cardEyebrow) { max-width:30ch; margin:0 0 22px; font:400 16px/1.7 var(--font-body),Arial,sans-serif; }
+.cardFood { display:block; grid-column:2; width:100%; max-width:330px; height:auto; max-height:95%; justify-self:end; align-self:end; margin-right:-36px; margin-bottom:-36px; object-fit:contain; filter:drop-shadow(0 20px 24px rgba(20,40,50,.25)); transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+@media (hover:hover) and (pointer:fine) { .carryoutCard:hover .cardFood,.cateringCard:hover .cardFood { transform:translateY(-6px); } }
 @media (max-width:700px) {
   .wrap { width:calc(100% - 40px); }
   .hero .wrap { grid-template-columns:1fr; min-height:0; gap:22px; }
@@ -79,9 +90,8 @@
   .reviewSet { grid-template-columns:1fr; gap:28px; }
   .reviewStack { min-height:650px; }
   .duoGrid { grid-template-columns:1fr; }
-  .carryoutCard,.cateringCard { min-height:340px; padding:24px; }
-  .cardText { max-width:67%; }
-  .cardFood { width:53%; bottom:-8%; }
+  .carryoutCard,.cateringCard { grid-template-columns:1fr; min-height:340px; padding:26px; }
+  .cardFood { grid-column:1; width:min(100%,240px); margin-right:-26px; margin-bottom:-26px; }
 }
 @media (prefers-reduced-motion:reduce) {
   .hero [data-intro],.reviewSet,.reviewCard,.reviewLine,.reviewCard blockquote,.heroBowl { animation:none !important; transition:none !important; }
@@ -90,4 +100,6 @@
   .reviews .reviewSet { opacity:0; transform:none; }
   .reviews .reviewSet[data-review-set="0"] { opacity:1; }
   .reviews .reviewSet[data-review-set="0"] .reviewCard { opacity:1; transform:none; }
+  .categoryCircle,.categoryCircle img,.categoryRing circle,.categoryLink > span:last-child::after,.cardFood { transition:none !important; }
+  .categoryLink:hover .categoryCircle,.categoryLink:focus-visible .categoryCircle,.categoryLink:hover .categoryCircle img,.categoryLink:focus-visible .categoryCircle img,.carryoutCard:hover .cardFood,.cateringCard:hover .cardFood { transform:none !important; }
 }

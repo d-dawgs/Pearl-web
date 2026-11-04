@@ -54,6 +54,7 @@ export function HomePage() {
               {menuData.categories.map((category) => (
                 <Link className={styles.categoryLink} key={category.id} href={"/menu?category=" + category.id}>
                   <span className={styles.categoryCircle}>
+                    <svg className={styles.categoryRing} viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="68.5" pathLength="100" /></svg>
                     {previewPhotos[category.id]
                       ? <Image src={previewPhotos[category.id]!} alt="" fill sizes="140px" />
                       : <span className={styles.pendingPhoto} aria-hidden="true">PI</span>}

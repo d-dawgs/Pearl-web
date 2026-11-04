@@ -17,6 +17,31 @@
         "value": "arial",
         "createdAt": "2026-10-29T01:06:20.644Z",
         "reason": "Diego's WEB-019 specification explicitly requires Arial for the Tropical Poster headline and menu controls; preserving the approved typography."
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/features/menu/menu-page.module.css"
+        ],
+        "createdAt": "2026-11-04T01:55:28.000Z",
+        "reason": "Diego approved the item dialog's 6px blue top border and 3px radius in the component-fixes brief."
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "src/features/website/home-page.tsx",
+          "src/features/menu/menu-page.tsx"
+        ],
+        "createdAt": "2026-11-04T01:55:28.000Z",
+        "reason": "Diego approved the Home hero and Menu page eyebrow text in their page design briefs; the component-fixes brief preserves them."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-04T01:55:28.000Z",
+        "reason": "Diego approved Inter as the shared body and UI font in the Home/header/footer design brief and this component-fixes brief."
       }
     ]
   }

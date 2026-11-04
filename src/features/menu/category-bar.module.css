@@ -1,7 +1,12 @@
 .viewport { overflow-x:auto; overflow-y:hidden; scrollbar-width:none; -webkit-overflow-scrolling:touch; border-bottom:1px solid rgba(68,156,196,.3); }
+.viewport[data-left="true"][data-right="true"] { mask-image:linear-gradient(to right,transparent,#000 28px,#000 calc(100% - 28px),transparent); }
+.viewport[data-left="true"][data-right="false"] { mask-image:linear-gradient(to right,transparent,#000 28px); }
+.viewport[data-left="false"][data-right="true"] { mask-image:linear-gradient(to left,transparent,#000 28px); }
 .viewport::-webkit-scrollbar { display:none; }
-.tabs { display:flex; width:max-content; min-width:100%; flex-wrap:nowrap; align-items:center; gap:6px 30px; }
-.tab { display:inline-flex; min-height:54px; flex:0 0 auto; align-items:center; padding:7px 0; border:0; background:transparent; color:var(--pi-ink); font:700 26px/1.1 var(--font-display),Impact,sans-serif; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; cursor:pointer; box-shadow:inset 0 -3px 0 transparent; }
-.tab[aria-current="true"] { color:var(--pi-blue); box-shadow:inset 0 -3px 0 var(--pi-hibiscus); }
-.tab:focus-visible { outline:3px solid var(--pi-blue); outline-offset:2px; }
+.tabs { position:relative; display:flex; width:max-content; min-width:100%; flex-wrap:nowrap; align-items:center; gap:clamp(12px,1.8vw,26px); }
+.tab { display:inline-flex; min-height:54px; flex:0 0 auto; align-items:center; padding:7px 0; border:0; background:transparent; color:var(--pi-ink); font:700 clamp(16px,1.6vw,24px)/1.1 var(--font-display),Impact,sans-serif; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; cursor:pointer; transition:color .35s; }
+.tab[aria-current="true"],.tab:hover,.tab:focus-visible { color:var(--pi-blue); }
+.tab:focus-visible { outline:none; }
+.bar { position:absolute; bottom:0; left:0; width:1px; height:3px; background:var(--pi-hibiscus); transform-origin:left center; pointer-events:none; transition:transform .45s cubic-bezier(.65,0,.35,1); }
 @media (max-width:700px) { .tab { min-height:48px; font-size:20px; } }
+@media (prefers-reduced-motion:reduce) { .tab,.bar { transition:none; } }
