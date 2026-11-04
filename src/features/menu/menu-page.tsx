@@ -53,30 +53,60 @@ function TextItem({ name, detail, price }: { name: string; detail: string; price
 }
 
 function WingWednesday() {
-  return <>
-    <p className={styles.wingIntro}>{menuCopy.wingIntro}</p>
-    <div className={styles.wingGallery}>
-      {menuData.wingPhotos.map((item) => <article className={styles.wingGalleryItem} key={item.id} data-reveal>
-        <MenuImage item={item} alt="Pearl Island wings" />
-        <h3 className={styles.itemName}>{item.name}</h3>
-        <p>{item.description}</p>
+  const [selected, setSelected] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const targets = [...(rootRef.current?.querySelectorAll<HTMLElement>("[data-wing-reveal]") ?? [])];
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      targets.forEach((target) => target.classList.add("is-in"));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+
+  const current = menuData.wingPhotos[selected];
+  return <div className={styles.wingPanel} ref={rootRef}>
+    <div className={styles.wingHead} data-wing-reveal>
+      <h2>PI x MK Halal Wings</h2>
+      <p className={styles.wingCollab}>PEARL ISLAND <span>×</span> MINT KITCHEN</p>
+      <p className={styles.wingHeadIntro}>{menuCopy.wingIntro}</p>
+    </div>
+    <div className={styles.wingPhotoRow} data-wing-reveal>
+      <div className={styles.wingStage}>
+        {menuData.wingPhotos.map((item, index) => <span className={styles.wingStagePhoto} data-selected={selected === index} aria-hidden={selected !== index} key={item.id}>
+          <Image src={item.image!} alt={item.name} width={item.naturalWidth!} height={item.naturalHeight!} sizes="(max-width: 760px) 90vw, 55vw" quality={90} />
+        </span>)}
+      </div>
+      <div className={styles.wingChoice}>
+        <div className={styles.wingSelectors} role="group" aria-label="Choose wings">
+          {menuData.wingPhotos.map((item, index) => <button type="button" className={styles.wingSelector} key={item.id} aria-pressed={selected === index} onClick={() => setSelected(index)}>
+            <Image src={item.image!} alt="" width={item.naturalWidth!} height={item.naturalHeight!} sizes="64px" quality={90} />
+            <span>{index === 0 ? "CHICKEN" : "VEGAN"}</span>
+          </button>)}
+        </div>
+        <div className={styles.wingCaption} aria-live="polite">
+          <h3>{current.name}</h3>
+          <p>{current.description}</p>
+        </div>
+      </div>
+    </div>
+    <div className={styles.wingSizes} data-wing-reveal>
+      {menuData.wingServings.map((item) => <article className={styles.wingSize} key={item.name}>
+        <h3>{item.name}</h3><strong className={styles.wingSizePrice}>{item.price}</strong>
+        <p><strong>{item.pieces}</strong> · {item.description.charAt(0).toLowerCase() + item.description.slice(1)}</p>
       </article>)}
     </div>
-    <section className={styles.extraSection} data-reveal>
-      <h3 className={styles.extraHeading}>{menuCopy.wingServingHeading}</h3>
-      <p>{menuCopy.wingServingIntro}</p>
-      <div className={styles.wingServingGrid}>
-        {menuData.wingServings.map((item) => <article className={styles.wingServingCard} key={item.name}>
-          <h4>{item.name}</h4><strong>{item.price}</strong><p>{item.pieces}</p><p>{item.description}</p>
-        </article>)}
-      </div>
-    </section>
-    <section className={styles.extraSection} data-reveal>
-      <h3 className={styles.extraHeading}>{menuCopy.wingSauceHeading}</h3>
-      <p>{menuCopy.wingSauces}</p>
-      <p>{menuCopy.wingOrderingNote}</p>
-    </section>
-  </>;
+    <p className={styles.wingSauces}><strong>SAUCES</strong>{menuCopy.wingSauces.split(" · ").map((sauce, index) => <span key={sauce}>{index > 0 && <i aria-hidden="true">·</i>}{sauce}</span>)}</p>
+    <SquareLink className={styles.wingOrder}>Order Now</SquareLink>
+  </div>;
 }
 
 function PlatterBar() {
@@ -195,15 +225,15 @@ export function MenuPage() {
         <h1 id="menu-page-title">THE MENU</h1>
         <CategoryBar categories={menuData.categories} activeId={activeCategory} onSelect={setActiveCategory} />
         <section ref={panelRef} id="menu-category-panel" role="tabpanel" aria-labelledby={`menu-category-${activeCategory}`} className={styles.categoryPanel}>
-          {activeCategory === "wing-wednesdays" && <p className={styles.wingEyebrow}>{menuCopy.wingEyebrow}</p>}
-          <h2>{menuCopy.categoryHeading[activeCategory]}</h2>
-          <p className={styles.categoryIntro}>{menuCopy.categoryIntro[activeCategory]}</p>
+          {activeCategory !== "wing-wednesdays" && <>
+            <h2>{menuCopy.categoryHeading[activeCategory]}</h2>
+            <p className={styles.categoryIntro}>{menuCopy.categoryIntro[activeCategory]}</p>
+          </>}
           <div key={activeCategory} className={styles.categoryContent}>
             {activeCategory === "wing-wednesdays" ? <WingWednesday />
               : activeCategory === "family-style" ? <TextItem {...menuData.familyStyle} />
               : activeCategory === "oxtail" ? <TextItem {...menuData.oxtail} />
               : activeCategory === "sides" ? <>
-                <h3 className={styles.extraHeading}>{menuCopy.sideGroups.cafe}</h3>
                 <ItemGrid items={entries.slice(0, 12)} onOpen={openItem} />
                 <section className={styles.extraSection}>
                   <h3 className={styles.extraHeading}>{menuCopy.sideGroups.addOns}</h3>
@@ -212,9 +242,9 @@ export function MenuPage() {
               </>
               : <ItemGrid items={entries} onOpen={openItem} />}
           </div>
-          <div className={styles.orderRow}>
+          {activeCategory !== "wing-wednesdays" && <div className={styles.orderRow}>
             <SquareLink className={styles.orderNow}>Order Now</SquareLink>
-          </div>
+          </div>}
         </section>
       </div>
     </section>

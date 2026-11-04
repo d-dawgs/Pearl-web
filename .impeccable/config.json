@@ -19,6 +19,15 @@
         "reason": "Diego's WEB-019 specification explicitly requires Arial for the Tropical Poster headline and menu controls; preserving the approved typography."
       },
       {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/features/website/site-footer.module.css"
+        ],
+        "createdAt": "2026-11-03T19:57:08.448Z",
+        "reason": "Diego approved the footer top edge with a 3px blue border and a 3px hibiscus stripe in the Home/header/footer design brief."
+      },
+      {
         "rule": "border-accent-on-rounded",
         "value": "*",
         "files": [
