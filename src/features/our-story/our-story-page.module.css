@@ -30,12 +30,19 @@
 :global(html[data-motion-ready="true"]) .storyChild[data-reveal] { transition: opacity .9s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
 .storyText > .storyChild:nth-child(2) { transition-delay: .12s !important; }
 .storyText > .storyChild:nth-child(3) { transition-delay: .24s !important; }
-.visitBand { padding: 44px 0; background: var(--pi-blue); }
-.visitBand .container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 24px; align-items: center; }
+.visitBand { min-height: 420px; padding: 32px 0; background: var(--pi-blue); }
+.visitBand .container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
 .visitBand h2 { margin: 0 0 8px; color: var(--pi-white); font: 700 30px/1.1 var(--font-display), Arial, sans-serif; }
-.visitBand p, .phoneLink { margin: 0; color: var(--pi-white); font: 600 16px/1.6 var(--font-body), Arial, sans-serif; }
-.phoneLink { text-decoration: underline; text-underline-offset: 3px; }
-.actions { display: grid; gap: 10px; }
+.visitBand h3 { margin: 0 0 8px; color: var(--pi-white); font: 700 26px/1.1 var(--font-display), Arial, sans-serif; }
+.visitInfo, .visitDetails { align-self: start; }
+.visitBand p,.visitBand address,.phoneLink { max-width: 32ch; margin: 0; color: var(--pi-white); font: 600 16px/1.6 var(--font-body), Arial, sans-serif; }
+.visitBand address { font-style: normal; }
+.visitInfo p { margin-top: 12px; }
+.phoneLink { display: inline-block; margin-top: 14px; text-decoration: underline; text-underline-offset: 3px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.mapArea { width: min(100%, 340px); min-width: 0; justify-self: end; }
+.mapFrame { width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 3px; background: var(--pi-white); }
+.mapFrame iframe { display: block; width: 100%; height: 100%; border: 0; background: var(--pi-white); filter: grayscale(1); }
 .button { display: inline-flex; min-height: 48px; padding: 0 22px; align-items: center; justify-content: center; border-radius: 3px; color: var(--pi-ink); font: 800 16px/1.2 var(--font-body), Arial, sans-serif; text-align: center; text-decoration: none; white-space: nowrap; }
 .mangoButton { background: var(--pi-mango); }
 .whiteButton { background: var(--pi-white); color: var(--pi-blue); }
@@ -45,8 +52,9 @@
   .rowA .photoFrame, .rowB .photoFrame, .rowC .photoFrame, .rowA .storyText, .rowB .storyText, .rowC .storyText { grid-column: 1; }
   .rowB .photoFrame { grid-row: 1; }
   .rowB .storyText { grid-row: 2; }
+  .visitBand { min-height: 0; }
   .visitBand .container { grid-template-columns: 1fr; }
-  .actions { max-width: 320px; }
+  .mapArea { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) {
   .photoLayer, .storyText::before, .storyText::after { transition: none; }

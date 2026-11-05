@@ -10,12 +10,16 @@ export function ScrollMotion() {
     const root = document.documentElement;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const hero = document.querySelector<HTMLElement>("[data-home-hero]");
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
     const reveals = [...document.querySelectorAll<HTMLElement>("[data-reveal]")];
     const reviews = document.querySelector<HTMLElement>("[data-reviews]");
     const reviewSets = [...(reviews?.querySelectorAll<HTMLElement>("[data-review-set]") ?? [])];
     let frame = 0;
     let reviewTimer: ReturnType<typeof setInterval> | undefined;
     let reviewIndex = 0;
+    let lastScrollY = window.scrollY;
+    let upwardTravel = 0;
+    let downwardTravel = 0;
 
     const rotateReviews = () => {
       reviewIndex = (reviewIndex + 1) % reviewSets.length;
@@ -28,6 +32,22 @@ export function ScrollMotion() {
 
     const update = () => {
       frame = 0;
+      const scrollY = Math.max(0, window.scrollY);
+      const distance = scrollY - lastScrollY;
+      lastScrollY = scrollY;
+      if (scrollY <= 16) {
+        upwardTravel = 0;
+        downwardTravel = 0;
+        header?.removeAttribute("data-hidden");
+      } else if (distance < -2) {
+        upwardTravel += -distance;
+        downwardTravel = 0;
+        if (upwardTravel >= 145) header?.removeAttribute("data-hidden");
+      } else if (distance > 2) {
+        downwardTravel += distance;
+        upwardTravel = 0;
+        if (scrollY > 160 && downwardTravel >= 12) header?.setAttribute("data-hidden", "true");
+      }
       if (preference.matches) return;
       const viewport = window.innerHeight;
       reveals.forEach((element) => {
@@ -47,6 +67,9 @@ export function ScrollMotion() {
 
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     const onPreference = () => {
+      lastScrollY = window.scrollY;
+      upwardTravel = 0;
+      downwardTravel = 0;
       if (preference.matches) {
         root.removeAttribute("data-motion-ready");
         reveals.forEach((element) => element.classList.add("is-in"));

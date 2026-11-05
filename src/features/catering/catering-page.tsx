@@ -115,11 +115,10 @@ export function CateringPage() {
                   <button type="button" className={styles.drawerFront} aria-expanded={isOpen} aria-controls={id} onClick={() => setOpenQuestion(isOpen ? null : id)}>
                     <span className={styles.questionText}>
                       <span>{item.question}</span>
-                      {"pending" in item && item.pending && <span className={styles.pendingTag}>NEEDS SOBER&apos;S ANSWER</span>}
                     </span>
                     <span className={styles.handle} aria-hidden="true" />
                   </button>
-                  <div className={styles.answerGrid} id={id} role="region" aria-label={item.question} aria-hidden={!isOpen}>
+                  <div className={styles.answerGrid} id={id} role="region" aria-label={`${group.label}, ${item.question}`} aria-hidden={!isOpen}>
                     <div className={styles.answerInner}><p>{item.answer}</p></div>
                   </div>
                 </div>;

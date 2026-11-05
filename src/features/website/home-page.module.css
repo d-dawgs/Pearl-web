@@ -22,7 +22,7 @@
 @keyframes intro-up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
 @keyframes intro-bowl { from { opacity:0; transform:translateX(36px); } to { opacity:1; transform:none; } }
 .menuPreview,.duoSection { padding-block:clamp(44px,5vw,70px); }
-.menuPreview { background:var(--pi-sand); }
+.menuPreview { padding-block:clamp(32px,3vw,46px); background:var(--pi-sand); }
 .sectionHeadingRow { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:28px; }
 .sectionHeading { display:inline-flex; align-items:center; gap:10px; margin:0; color:var(--pi-blue); font:700 clamp(36px,4vw,52px)/1.05 var(--font-display),Impact,sans-serif; letter-spacing:.03em; text-transform:uppercase; }
 .sectionHeading::after { content:""; width:10px; height:10px; flex:none; background:var(--pi-hibiscus); transform:rotate(45deg); }

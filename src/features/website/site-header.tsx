@@ -42,7 +42,7 @@ export function SiteHeader() {
     barRef.current.style.transform = `translateX(${current.offsetLeft}px) scaleX(${current.offsetWidth})`;
   };
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-site-header>
       <div className={styles.inner}>
         <nav className={styles.desktopNav} ref={navRef} aria-label="Website pages" onPointerOver={(event) => moveBar(event.target)} onPointerLeave={restoreBar} onFocus={(event) => moveBar(event.target)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) restoreBar(); }}>
           {desktopPages.map((page) => (
